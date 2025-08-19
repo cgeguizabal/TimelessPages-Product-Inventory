@@ -5,8 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash; // I added it so I could hash Password
+use Illuminate\Support\Facades\Hash; 
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\UserResource; // Defines what is returned
 
 
 class AuthController extends Controller
@@ -37,7 +38,7 @@ class AuthController extends Controller
         'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role ?? 'seller', 
+            'role' => $request->role ?? 'seller', //Default role is seller
     ]);
 
     //Create token 
@@ -46,7 +47,7 @@ class AuthController extends Controller
     //Response
     return response()->json([
         "message" => "User registered successfully",
-        'user' => $user,
+        'user' => new UserResource($user),
             'token' => $token,
             'token_type' => 'Bearer' 
     ],201);
@@ -67,7 +68,7 @@ public function login(Request $request){
             'status' => false,
             'message'=> $errorMessage,
         ];
-        return response()->json($response, 401);
+        return response()->json($response, 422);
     }
 
     //Find user by email
@@ -89,10 +90,27 @@ public function login(Request $request){
 
     //Send response(token)
     return response()->json([
-        'user' => $user,
+        'status' => true,
+        'message' => 'Login successful',
+        'user' => new UserResource($user),
         'token' => $token,
         'token_type' => 'Bearer'
     ]);    
+}
+
+//Logout and delete current token
+public function logout(Request $request){
+    //Get current user
+    $user = $request->user();
+
+    //Delete current token
+    $user->currentAccessToken()->delete();
+
+    //Response
+    return response()->json([
+        'status' => true,
+        'message' => 'Logged out successfully'
+    ]);
 }
 
 }

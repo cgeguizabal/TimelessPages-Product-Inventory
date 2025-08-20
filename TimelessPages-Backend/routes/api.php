@@ -5,10 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ProductController;
-
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
+use App\Http\Controllers\API\SupplierController;
 
 
 //Authentication(Register, Login and Logout)
@@ -27,3 +24,6 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
 //Products management, protected 
 Route::middleware('auth:sanctum')->apiResource('/products', ProductController::class); 
+
+//Suppliers management, protected
+Route::middleware(['auth:sanctum', 'role:admin'])->apiResource('/suppliers', SupplierController::class); //Just admins can have access to Suppliers information

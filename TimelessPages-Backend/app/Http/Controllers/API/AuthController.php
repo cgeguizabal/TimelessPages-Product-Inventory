@@ -48,8 +48,8 @@ class AuthController extends Controller
     return response()->json([
         "message" => "User registered successfully",
         'user' => new UserResource($user),
-            'token' => $token,
-            'token_type' => 'Bearer' 
+        'token' => $token,
+        'token_type' => 'Bearer' 
     ],201);
 }
 
@@ -81,6 +81,8 @@ public function login(Request $request){
         "message" => 'The provided credentials are incorrect'
     ], 401);
 }
+
+
 
     //Delete old tokens
     $user->tokens()->delete();

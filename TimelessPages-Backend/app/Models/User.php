@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Sale;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,16 @@ class User extends Authenticatable
         'password',
         'role',
     ];
+
+    //One user has many sales
+    public function sales(){
+        return $this->hasMany(Sale::class);
+    }
+
+    //One user has many purchases
+    public function purchases(){
+        return $this->hasMany(Purchase::class);
+    }
 
     // The attributes that should be hidden for serialization.    
     protected $hidden = [

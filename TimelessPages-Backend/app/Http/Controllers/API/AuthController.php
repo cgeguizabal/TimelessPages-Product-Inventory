@@ -70,7 +70,7 @@ public function login(Request $request){
         ];
         return response()->json($response, 422);
     }
-
+ 
     //Find user by email
     $user = User::where('email', $request->email)->first();
 
@@ -105,8 +105,8 @@ public function logout(Request $request){
     //Get current user
     $user = $request->user();
 
-    //Delete current token
-    $user->currentAccessToken()->delete();
+    //Delete tokens
+    $user->tokens()->delete();
 
     //Response
     return response()->json([

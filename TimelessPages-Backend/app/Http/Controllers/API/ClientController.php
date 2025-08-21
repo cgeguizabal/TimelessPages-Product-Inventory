@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 
@@ -64,14 +63,7 @@ class ClientController extends Controller
      */
     public function update(UpdateClientRequest $request, Client $client)
     {
-        // //find client
-        // $client = Client::find($id);
-
-        // //Error Handler
-        // if(!$client){
-        //     return response()->json(["status"=>"false",'message' => 'Client not found'], 404);
-        // }
-
+        
         //Update client
         $client->update($request->validated());
 

@@ -34,14 +34,21 @@ class ReportController extends Controller
         ]);
 
         $sales = Sale::with('saleDetails')
-        ->whereBetween('created_at', [$request->from, $request->to])
+        ->whereBetween('date', [$request->from, $request->to])
         ->get();
+
+        if ($sales->isEmpty()) {
+        return response()->json([
+            'status' => false,
+            'message' => 'No sales found in the given date range'
+        ], 404);
+    }
 
         return response()->json([
             'status' => true,
             'data' => $sales
         ]);
-    }
+    } 
 
     //Report of Purchases by supplier
       public function purchasesBySupplier(Request $request)

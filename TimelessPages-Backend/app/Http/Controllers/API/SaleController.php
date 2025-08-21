@@ -8,6 +8,7 @@ use App\Models\Sale;
 use App\Models\SaleDetail;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreSaleRequest;
 
 class SaleController extends Controller
 {
@@ -15,22 +16,23 @@ class SaleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSaleRequest $request)
     {
         try {
             // Validate and create the sale
-  //This makes sure that every database operation is executed successfully
-            $sale = DB::transaction(function() use ($request){
+            $data = $request->validated();
+            //This makes sure that every database operation is executed successfully
+            $sale = DB::transaction(function() use ($data){
 
                 //Create Sale
                 $sale = Sale::create([
-                    'client_id' => $request['client_id'],
-                    'user_id' => $request['user_id'],
+                    'client_id' => $data['client_id'],
+                    'user_id' => $data['user_id'],
                     'date' => now()->toDateString(),
                 ]);
 
                 //Create Sale Details
-                foreach($request['products'] as $items){
+                foreach($data['products'] as $items){
 
                     //Get product price from DB
                     $product = Product::find($items['id']);

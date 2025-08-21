@@ -30,6 +30,7 @@ class RegisterUserRequest extends FormRequest
             'role' => 'nullable|in:admin,seller', // The role must be either 'admin' or 'seller'
         ];
     }
+    //This function returns custom error messages for validation failures
 
     public function messages(): array
     {

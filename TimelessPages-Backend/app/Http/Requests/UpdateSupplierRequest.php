@@ -31,7 +31,8 @@ class UpdateSupplierRequest extends FormRequest
         ];
     }
 
-     public function messages(): array
+    //This function returns custom error messages for validation failures
+    public function messages(): array
     {
         return [
             'name.string'    => 'Supplier name must be a string.',

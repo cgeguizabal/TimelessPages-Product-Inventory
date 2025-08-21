@@ -31,6 +31,7 @@ class UpdateClientRequest extends FormRequest
         ];
     }
 
+     //This function returns custom error messages for validation failures
     public function messages(): array
     {
         return [

@@ -29,7 +29,7 @@ class StoreSupplierRequest extends FormRequest
             'phone' => 'nullable|string|max:20',
         ];
     }
-
+    //This function returns custom error messages for validation failures
     public function messages(): array
     {
         return [

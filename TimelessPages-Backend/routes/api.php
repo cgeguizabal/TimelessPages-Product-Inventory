@@ -48,7 +48,8 @@ Route::middleware('auth:sanctum')->group(function(){
    Route::apiResource('/clients', ClientController::class);
 
    //Sales management, protected
-   Route::apiResource('/sales', SaleController::class);
+   Route::post('/sales', [SaleController::class, 'store']);
+   Route::get('/sales', [SaleController::class, 'index']);
 
    //Stock report
    Route::get('/reports/stock', [ReportController::class, 'stockReport']);

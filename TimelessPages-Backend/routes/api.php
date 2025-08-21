@@ -9,6 +9,7 @@ use App\Http\Controllers\API\SupplierController;
 use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\API\PurchaseController;
 use App\Http\Controllers\API\SaleController;
+use App\Http\Controllers\API\ReportController;
 
 
 //Authentication(Register, Login and Logout)
@@ -48,5 +49,10 @@ Route::middleware('auth:sanctum')->group(function(){
 
    //Sales management, protected
    Route::apiResource('/sales', SaleController::class);
+
+   //Stock report
+   Route::get('/reports/stock', [ReportController::class, 'stockReport']);
+   Route::post('/reports/sales', [ReportController::class, 'sales']);
+   Route::post('/reports/purchases', [ReportController::class, 'purchasesBySupplier']);
 
 });

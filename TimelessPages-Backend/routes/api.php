@@ -8,6 +8,7 @@ use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\SupplierController;
 use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\API\PurchaseController;
+use App\Http\Controllers\API\SaleController;
 
 
 //Authentication(Register, Login and Logout)
@@ -35,3 +36,6 @@ Route::middleware(['auth:sanctum', 'role:admin'])->apiResource('/suppliers', Sup
 
 //Purchases management, protected
 Route::middleware(['auth:sanctum', 'role:admin'])->post('/purchases', [PurchaseController::class, 'store']);
+
+//Sales management, protected
+Route::middleware('auth:sanctum')->apiResource('/sales', SaleController::class);

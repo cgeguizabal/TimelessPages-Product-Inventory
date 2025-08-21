@@ -17,25 +17,36 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 
-//User Management, protected
+
+//PROTECTED WITH SANCTUM AND ROLE MIDDLEWARE
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+
+    //User Management, protected
     Route::get('/users', [UserController::class, 'index']);   
     Route::get('/users/{user}', [UserController::class, 'show']);
     Route::put('/users/{user}', [UserController::class, 'update']);
     Route::delete('/users/{user}', [UserController::class, 'destroy']);
+
+    //Suppliers management, protected with role permissions
+    Route::apiResource('/suppliers', SupplierController::class); //Just admins can have access to Suppliers information
+
+   //Purchases management, protected
+   Route::post('/purchases', [PurchaseController::class, 'store']);
 });
 
-//Products management, protected 
-Route::middleware('auth:sanctum')->apiResource('/products', ProductController::class); 
 
-//Client managment, protected
-Route::middleware('auth:sanctum')->apiResource('/clients', ClientController::class);
 
-//Suppliers management, protected with role permissions
-Route::middleware(['auth:sanctum', 'role:admin'])->apiResource('/suppliers', SupplierController::class); //Just admins can have access to Suppliers information
 
-//Purchases management, protected
-Route::middleware(['auth:sanctum', 'role:admin'])->post('/purchases', [PurchaseController::class, 'store']);
+//PROTECTED WITH SANCTUM
+Route::middleware('auth:sanctum')->group(function(){
 
-//Sales management, protected
-Route::middleware('auth:sanctum')->apiResource('/sales', SaleController::class);
+    //Products management, protected 
+    Route::apiResource('/products', ProductController::class); 
+
+    //Client managment, protected
+   Route::apiResource('/clients', ClientController::class);
+
+   //Sales management, protected
+   Route::apiResource('/sales', SaleController::class);
+
+});

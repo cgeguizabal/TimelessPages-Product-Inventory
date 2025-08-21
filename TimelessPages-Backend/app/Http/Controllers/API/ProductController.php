@@ -5,7 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product; 
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
@@ -26,29 +27,13 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
 
-        //Validation 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'unit_price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-        ]);
-
-        //Validation Error Handler
-        if($validator->fails()){
-            return response()->json([
-                'status' => "false",
-                "message" => "All fields are required",
-                "errors" => $validator->errors()
-            ], 422);
-        };
 
        //Create product
-        $product = Product::create($request->all());
-        
+        $product = Product::create($request->validated());
+
         //Send response
         return response()->json([
             'status' => "true",
@@ -85,18 +70,10 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        $product = Product::find($id);
-
-        if(!$product){
-            return response()->json([
-                "status" => "false",
-                "message" => "Book not found"
-            ], 404);
-        }
-
-        $product->update($request->all());
+        //Update product
+        $product->update($request->validated());
 
         //Send response
         return response()->json([

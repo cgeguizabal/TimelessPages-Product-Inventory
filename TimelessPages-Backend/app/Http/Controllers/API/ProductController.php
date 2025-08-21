@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product; 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -15,6 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+        //Authorize the user
+        Gate::authorize('viewAny', Product::class);
+
         $products = Product::all();
 
         //Error Handler
@@ -29,7 +33,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-
+        //Authorize the user
+        Gate::authorize('create', Product::class);
 
        //Create product
         $product = Product::create($request->validated());
@@ -46,18 +51,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Product $product)
     {
-        $product = Product::find($id);
-
-        //Error Handler
-        if(!$product){
-            return response()->json([
-                "status" => "false",
-                "message" => "Book not found"
-            ], 404);
-        }
-
+        //Authorize the user
+        Gate::authorize('view', $product);
 
        //Send response
         return response()->json([
@@ -72,8 +69,12 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //Update product
-        $product->update($request->validated());
+
+        //Authorize the user
+        Gate::authorize('update', $product);
+        try {
+            //Update product
+            $product->update($request->validated());
 
         //Send response
         return response()->json([
@@ -81,28 +82,39 @@ class ProductController extends Controller
             "message" => "Book updated successfully",
             "data" => $product
         ], 200);
+    } catch (\Exception $error) {
+        return response()->json([
+            "status" => "false",
+            "message" => "Error updating product: " . $error->getMessage()
+        ], 500);
+    }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        $product = Product::find($id);
 
-        if(!$product){
-            return response()->json([
-                "status" => "false",
-                "message" => "Book not found"
-            ], 404);
-        }
+        //Authorize the user
+        Gate::authorize('delete', $product);
 
-        $product->delete();
-
-        //Send response
+      try {
+          $product->delete();
+          
+          //Send response
         return response()->json([
             "status" => "true",
             "message" => "Book deleted successfully"
         ], 200);
+
+      } catch (\Exception $error) {
+          return response()->json([
+              "status" => "false",
+              "message" => "Error deleting product: " . $error->getMessage()
+          ], 500);
+      }
+
+        
     }
 }

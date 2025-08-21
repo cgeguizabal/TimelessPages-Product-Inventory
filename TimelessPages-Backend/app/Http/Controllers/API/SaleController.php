@@ -12,6 +12,14 @@ use App\Http\Requests\StoreSaleRequest;
 
 class SaleController extends Controller
 {
+    public function index(){
+        $sales = Sale::all();
+
+        return response()->json([
+            'status' => true,
+            'data' => $sales
+        ]);
+    }
     
     /**
      * Store a newly created resource in storage.

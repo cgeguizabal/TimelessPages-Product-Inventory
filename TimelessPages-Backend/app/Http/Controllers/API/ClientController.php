@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use Illuminate\Support\Facades\Validator;
-
+use App\Http\Requests\StoreClientRequest;
+use App\Http\Requests\UpdateClientRequest;
 
 
 class ClientController extends Controller
@@ -29,25 +30,11 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreClientRequest $request)
     {
-        //Validation
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'nullable|string',
-            'phone' => 'nullable|string',
-        ]);
-       //Error Handler
-        if($validator->fails()){
-            return response()->json([
-                'status' => "false",
-                "message" => "All fields are required",
-                "errors" => $validator->errors()
-            ], 422);
-        };
-
+       
         //Create client
-        $client = Client::create($request->all());
+        $client = Client::create($request->validated());
 
         //Send response
         return response()->json([
@@ -75,18 +62,18 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateClientRequest $request, Client $client)
     {
-        //find client
-        $client = Client::find($id);
+        // //find client
+        // $client = Client::find($id);
 
-        //Error Handler
-        if(!$client){
-            return response()->json(["status"=>"false",'message' => 'Client not found'], 404);
-        }
+        // //Error Handler
+        // if(!$client){
+        //     return response()->json(["status"=>"false",'message' => 'Client not found'], 404);
+        // }
 
         //Update client
-        $client->update($request->all());
+        $client->update($request->validated());
 
         //Send response
         return response()->json([

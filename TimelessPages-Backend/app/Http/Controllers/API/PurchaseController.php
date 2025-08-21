@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
 use App\Models\PurchaseDetail;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StorePurchaseRequest;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
@@ -16,22 +16,23 @@ class PurchaseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
- public function store(Request $request)
+ public function store(StorePurchaseRequest $request)
 {
     try {
 
+        $data = $request->validated();
         //This makes sure that every database operation is executed successfully
-        $purchase = DB::transaction(function() use ($request) {
+        $purchase = DB::transaction(function() use ($data) {
 
             // Create purchase
             $purchase = Purchase::create([
-                'supplier_id' => $request->supplier_id,
+                'supplier_id' => $data['supplier_id'],
                 'date' => now()->toDateString(),
-                'user_id' => $request->user_id,
+                'user_id' => $data['user_id'],
             ]);
 
             // Create Purchase Details
-            foreach ($request->products as $item) {
+            foreach ($data['products'] as $item) {
 
                 // Get product price from DB
                 $product = Product::find($item['id']);

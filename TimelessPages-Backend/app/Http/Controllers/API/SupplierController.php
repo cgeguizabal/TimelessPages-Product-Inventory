@@ -5,7 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreSupplierRequest;
+use App\Http\Requests\UpdateSupplierRequest;
 
 class SupplierController extends Controller
 {
@@ -26,25 +27,12 @@ class SupplierController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSupplierRequest $request)
     {
-        //Validation
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'nullable|string',
-            'phone' => 'nullable|string',
-        ]);
-       //Error Handler
-        if($validator->fails()){
-            return response()->json([
-                'status' => "false",
-                "message" => "All fields are required",
-                "errors" => $validator->errors()
-            ], 422);
-        };
+        
 
         //Create supplier
-        $supplier = Supplier::create($request->all());
+        $supplier = Supplier::create($request->validated());
 
         //Send response
         return response()->json([
@@ -75,21 +63,12 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
 
-       //Find supplier
-        $supplier = Supplier::find($id);
-        
-        //Error Handler
-        if(!$supplier){
-            return response()->json(["status"=>"false",'message' => 'Supplier not found'], 404);
-        }
-
-    
 
        //Update supplier information
-        $supplier->update($request->all());
+        $supplier->update($request->validated());
 
 
         //Send response

@@ -16,10 +16,10 @@ class UserResource extends JsonResource
     {
         // Return the user data in a structured format
         return [
-            'user_id' => $this->id,
-            "user_name" => $this->name,
-            "user_email" => $this->email,
-            "user_role" => $this->role,
+            'id' => $this->id,
+            "name" => $this->name,
+            "email" => $this->email,
+            "role" => $this->role,
         ];
     }
 }

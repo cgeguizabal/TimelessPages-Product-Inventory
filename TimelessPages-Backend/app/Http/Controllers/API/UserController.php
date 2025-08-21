@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Resources\UserResource; // Defines what is returned
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -56,19 +57,20 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $user = User::find($id);
+        //Validate Request
+        $data = $request->validated();
 
-        if (!$user) {
-            return response()->json([
-                'status' => false,
-                'message' => 'User not found'
-            ], 404);
-        }
+      // If password is present, hash it
+        if (isset($data['password'])) {
+        $data['password'] = Hash::make($data['password']);
+    }
 
-        $user->update($request->all());
+       //Update User
+        $user->update($data);
 
+        //Send Response
         return response()->json([
             'status' => true,
             'data' => new UserResource($user)

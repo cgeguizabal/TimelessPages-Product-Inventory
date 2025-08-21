@@ -6,39 +6,23 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash; 
-use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\UserResource; // Defines what is returned
+use App\Http\Requests\RegisterUserRequest;
 
 
 class AuthController extends Controller
 {
     //Register a new user
-    public function register(Request $request){
+    public function register(RegisterUserRequest $request){
 
-    // Validate the input from request       
-        $validator = Validator::make($request->all(),[
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed', // add password_confirmation on request
-            'role' => 'in:admin,seller', //Can be either admin or seller, nothing else
-        ]);
-    
-    //Handle errors
-        if($validator->fails()){
-            $errorMessage = $validator->errors()->first();
-            $response = [
-                "status" => false,
-                "message" => $errorMessage,
-            ];
-            return response()->json($response, 422);
-        }
+   $data = $request->validated();
 
      //Create User and hash password
         $user = User::create([
-        'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role ?? 'seller', //Default role is seller
+        'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => $data['role'] ?? 'seller', //Default role is seller
     ]);
 
     //Create token 

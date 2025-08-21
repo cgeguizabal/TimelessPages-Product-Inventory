@@ -5,16 +5,24 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Resources\UserResource; // Defines what is returned
+use App\Http\Resources\UserResource; 
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Gate; 
+
+
 
 class UserController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+
+        Gate::authorize('viewAny', User::class);
         //Find all users
         $users = User::all();
         
@@ -37,17 +45,11 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        $user = User::find($id);
+                Gate::authorize('view', $user);
 
-        if(!$user) {
-            return response()->json([
-                'status' => false,
-                'message' => 'User not found'
-            ], 404);
-        }
-
+        //Send Response
         return response()->json([
             'status' => true,
             'data' => new UserResource($user)
@@ -58,44 +60,52 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateUserRequest $request, User $user)
-    {
-        //Validate Request
+{
+    Gate::authorize('update', $user);
+    try {
         $data = $request->validated();
 
-      // If password is present, hash it
+        // Hash password if present
         if (isset($data['password'])) {
-        $data['password'] = Hash::make($data['password']);
-    }
+            $data['password'] = Hash::make($data['password']);
+        }
 
-       //Update User
+        // Update user
         $user->update($data);
 
-        //Send Response
+        //Send response
         return response()->json([
             'status' => true,
             'data' => new UserResource($user)
         ]);
+    } catch (\Exception $error) {
+        //Send error
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed to update user',
+            'error' => $error->getMessage()
+        ], 500);
     }
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $user = User::find($id);
-
-        if (!$user) {
-            return response()->json([
-                'status' => false,
-                'message' => 'User not found'
-            ], 404);
-        }
-
+    public function destroy(User $user){
+        Gate::authorize('delete', $user);
+    try {
         $user->delete();
 
         return response()->json([
             'status' => true,
             'message' => 'User deleted successfully'
         ]);
+    } catch (\Exception $error) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed to delete user',
+            'error' => $error->getMessage()
+        ], 500);
     }
+ }
 }

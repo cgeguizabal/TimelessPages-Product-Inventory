@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
+use Illuminate\Support\Facades\Gate;
+
 
 class SupplierController extends Controller
 {
@@ -15,6 +17,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
+
+        //Authorize the user
+        Gate::authorize('viewAny', Supplier::class);
         $suppliers = Supplier::all();
 
         //Error Handler
@@ -29,7 +34,8 @@ class SupplierController extends Controller
      */
     public function store(StoreSupplierRequest $request)
     {
-        
+
+        Gate::authorize('create', Supplier::class);
 
         //Create supplier
         $supplier = Supplier::create($request->validated());
@@ -45,14 +51,10 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Supplier $supplier)
     {
-        $supplier = Supplier::find($id);
-
-        //Error Handler
-        if(!$supplier){
-            return response()->json(["status"=>"false",'message' => 'Supplier not found'], 404);
-        }
+        //Authorize the user
+        Gate::authorize('view', $supplier);
         return response()->json([
             "status" => "true",
             "message" => "Supplier retrieved successfully",
@@ -66,32 +68,39 @@ class SupplierController extends Controller
     public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
 
+        //Authorize the user
+        Gate::authorize('update', $supplier);
+        try{
+            //Update supplier information
+            $supplier->update($request->validated());
 
-       //Update supplier information
-        $supplier->update($request->validated());
-
-
-        //Send response
+            //Send response
         return response()->json([
             "status" => "true",
             "message" => "Supplier updated successfully",
             "data" => $supplier
         ], 200);
+        
+        } catch (\Exception $error) {
+            return response()->json([
+                "status" => "false",
+                "message" => "Error updating supplier: " . $error->getMessage()
+            ], 500);
+        }
+
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Supplier $supplier)
     {
-        //Find supplier
-        $supplier = Supplier::find($id);
+        //Authorize the user
+        
+       Gate::authorize('delete', $supplier);
 
-        //error Handler
-        if(!$supplier){
-            return response()->json(["status"=>"false",'message' => 'Supplier not found'], 404);
-        }
-
+       try{
         //Delete supplier
         $supplier->delete();
 
@@ -100,5 +109,11 @@ class SupplierController extends Controller
             "status" => "true",
             "message" => "Supplier deleted successfully"
         ], 200);
+    }catch(\Exception $error){
+        return response()->json([
+            "status" => "false",
+            "message" => "Error deleting supplier: " . $error->getMessage()
+        ], 500);
     }
+ }
 }

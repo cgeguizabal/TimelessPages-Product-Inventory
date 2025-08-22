@@ -119,22 +119,22 @@ Actualmente la aplicación se encuentra en línea y puedes utilizarla sin ningú
 ```json
 {
   "name": "UserAdmin1",
-  "email": "useradmin1@gmail.com"
+  "email": "useradmin1@gmail.com",
   "password: "123456"
 }
 {
   "name": "UserAdmin2",
-  "email": "useradmin2@gmail.com"
+  "email": "useradmin2@gmail.com",
   "password: "123456"
 }
 {
   "name": "UserSeller1",
-  "email": "userSeller1@gmail.com"
+  "email": "userSeller1@gmail.com",
   "password: "123456"
 }
 {
   "name": "UserSeller2",
-  "email": "userSeller2@gmail.com"
+  "email": "userSeller2@gmail.com",
   "password: "123456"
 }
 

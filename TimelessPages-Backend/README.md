@@ -38,72 +38,78 @@ Aplicación creada para manejar el inventario de una librería, gestionada por *
 ---
 
 ## 👥 Gestión de Usuarios
-| Método | Endpoint               | Descripción |
-|--------|------------------------|-------------|
-| GET    | `/api/users`        | Listar todos los usuarios | Role necesario para ocupar: Admin
-| GET    | `/api/users/{id}`   | Obtener usuario por ID | Role necesario para ocupar: Admin
-| POST   | `/api/users`        | Crear nuevo usuario | Role necesario para ocupar: Admin
-| PUT    | `/api/users/{id}`   | Actualizar usuario | Role necesario para ocupar: Admin
-| DELETE | `/api/users/{id}`   | Eliminar usuario | Role necesario para ocupar: Admin
+| Método | Endpoint             | Descripción             | Role necesario |
+|--------|---------------------|------------------------|----------------|
+| GET    | `/api/users`        | Listar todos los usuarios | Admin          |
+| GET    | `/api/users/{id}`   | Obtener usuario por ID   | Admin          |
+| POST   | `/api/users`        | Crear nuevo usuario      | Admin          |
+| PUT    | `/api/users/{id}`   | Actualizar usuario       | Admin          |
+| DELETE | `/api/users/{id}`   | Eliminar usuario         | Admin          |
+
 
 ---
 
 ## 📦 Gestión de Productos
-| Método | Endpoint                  | Descripción |
-|--------|---------------------------|-------------|
-| GET    | `/api/products`        | Listar todos los productos | Role necesario para ocupar: Admin o seller
-| GET    | `/api/products/{id}`   | Obtener producto por ID | Role necesario para ocupar: Admin o seller
-| POST   | `/api/products`        | Crear nuevo producto | Role necesario para ocupar: Admin
-| PUT    | `/api/products/{id}`   | Actualizar producto | Role necesario para ocupar: Admin
-| DELETE | `/api/products/{id}`   | Eliminar producto | Role necesario para ocupar: Admin
+| Método | Endpoint               | Descripción              | Role necesario        |
+|--------|------------------------|-------------------------|---------------------|
+| GET    | `/api/products`        | Listar todos los productos | Admin o Seller       |
+| GET    | `/api/products/{id}`   | Obtener producto por ID   | Admin o Seller       |
+| POST   | `/api/products`        | Crear nuevo producto      | Admin               |
+| PUT    | `/api/products/{id}`   | Actualizar producto       | Admin               |
+| DELETE | `/api/products/{id}`   | Eliminar producto         | Admin               |
+
 
 ---
 
 ## 🏢 Gestión de Proveedores
-| Método | Endpoint                  | Descripción |
-|--------|---------------------------|-------------|
-| GET    | `/api/suppliers`       | Listar todos los proveedores | Role necesario para ocupar: Admin o seller
-| GET    | `/api/suppliers/{id}`  | Obtener proveedor por ID | Role necesario para ocupar: Admin o seller
-| POST   | `/api/suppliers`       | Crear nuevo proveedor | Role necesario para ocupar: Admin
-| PUT    | `/api/suppliers/{id}`  | Actualizar proveedor | Role necesario para ocupar: Admin
-| DELETE | `/api/suppliers/{id}`  | Eliminar proveedor | Role necesario para ocupar: Admin
+| Método | Endpoint                  | Descripción                  | Role necesario        |
+|--------|---------------------------|-----------------------------|---------------------|
+| GET    | `/api/suppliers`          | Listar todos los proveedores | Admin o Seller       |
+| GET    | `/api/suppliers/{id}`     | Obtener proveedor por ID     | Admin o Seller       |
+| POST   | `/api/suppliers`          | Crear nuevo proveedor        | Admin               |
+| PUT    | `/api/suppliers/{id}`     | Actualizar proveedor         | Admin               |
+| DELETE | `/api/suppliers/{id}`     | Eliminar proveedor           | Admin               |
 
 ---
 
 ## 👤 Gestión de Clientes
-| Método | Endpoint                  | Descripción |
-|--------|---------------------------|-------------|
-| GET    | `/api/clients`         | Listar todos los clientes | Role necesario para ocupar: Admin o seller
-| GET    | `/api/clients/{id}`    | Obtener cliente por ID | Role necesario para ocupar: Admin o seller
-| POST   | `/api//clients`         | Crear nuevo cliente | Role necesario para ocupar: Admin o seller
-| PUT    | `/api/clients/{id}`    | Actualizar cliente | Role necesario para ocupar: Admin
-| DELETE | `/api/clients/{id}`    | Eliminar cliente | Role necesario para ocupar: Admin
+| Método | Endpoint                 | Descripción              | Role necesario        |
+|--------|--------------------------|-------------------------|---------------------|
+| GET    | `/api/clients`           | Listar todos los clientes | Admin o Seller       |
+| GET    | `/api/clients/{id}`      | Obtener cliente por ID    | Admin o Seller       |
+| POST   | `/api/clients`           | Crear nuevo cliente       | Admin o Seller       |
+| PUT    | `/api/clients/{id}`      | Actualizar cliente        | Admin               |
+| DELETE | `/api/clients/{id}`      | Eliminar cliente          | Admin               |
+
 
 ---
 
 ## 🛒 Gestión de Compras
-| Método | Endpoint                  | Descripción |
-|--------|---------------------------|-------------|
-| POST   | `/api/purchases`       | Registrar nueva compra | Role necesario para ocupar: Admin
+| Método | Endpoint          | Descripción                | Role necesario |
+|--------|-----------------|----------------------------|----------------|
+| POST   | `/api/purchases` | Registrar nueva compra     | Admin          |
+
 
 
 ---
 
 ## 💰 Gestión de Ventas
-| Método | Endpoint                  | Descripción |
-|--------|---------------------------|-------------|
-| GET    | `/api/sales`           | Listar todas las ventas | Role necesario para ocupar: Admin o seller
-| POST   | `/api/sales`           | Registrar nueva venta | Role necesario para ocupar: Admin o seller 
+| Método | Endpoint          | Descripción                | Role necesario           |
+|--------|-----------------|----------------------------|-------------------------|
+| GET    | `/api/sales`     | Listar todas las ventas    | Admin o Seller          |
+| POST   | `/api/sales`     | Registrar nueva venta      | Admin o Seller          |
+
 
 
 ---
 
 ## 📊 Reportes
-| Método | Endpoint                  | Descripción |
-|--------|---------------------------|-------------|
-| GET    | `/api/reports/stock`   | Reporte de stock actual | Role necesario para ocupar: Admin
-| POST   | `/api/reports/sales`   | Reporte de ventas filtrado por fechas | Role necesario para ocupar: Admin
-| POST   | `/api/reports/purchases` | Reporte de compras filtrado por proveedores | Role necesario para ocupar: Admin
+| Método | Endpoint                     | Descripción                                      | Role necesario |
+|--------|------------------------------|-------------------------------------------------|----------------|
+| GET    | `/api/reports/stock`         | Reporte de stock actual                          | Admin          |
+| POST   | `/api/reports/sales`         | Reporte de ventas filtrado por fechas           | Admin          |
+| POST   | `/api/reports/purchases`     | Reporte de compras filtrado por proveedores    | Admin          |
+
 
 ---
 ## 🛠️ Requisitos para probar la aplicación
@@ -159,8 +165,9 @@ Clona el repositorio
 Abre tu terminal en la raíz del proyecto
 
 Ejecuta los siguientes comandos:
-
-composer install # Instala dependencias PHP
-cp .env.example .env # Crea tu archivo .env
-php artisan serve # Inicia el servidor local
+```bash
+composer install      # ⚙️ Instala dependencias de PHP
+cp .env.example .env  # 📝 Crea tu archivo de configuración .env
+php artisan serve      # 🚀 Inicia el servidor local
+```
 

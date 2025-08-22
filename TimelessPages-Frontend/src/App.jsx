@@ -8,6 +8,7 @@ import useAuthStore from "./store/auth";
 import RegisterPurchase from "./pages/RegisterPurchase";
 import RegisterSales from "./pages/RegisterSales";
 import RegisterProduct from "./pages/RegisterProduct";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -54,13 +55,22 @@ function App() {
           isAuthenticated ? <RegisterSales /> : <Navigate to="/login" replace />
         }
       />
-
       //RegisterProduct
-
       <Route
         path="/register-product"
         element={
-          isAuthenticated ? <RegisterProduct /> : <Navigate to="/login" replace />
+          isAuthenticated ? (
+            <RegisterProduct />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      //Dashboard
+      <Route
+        path="/dashboard"
+        element={
+          isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />
         }
       />
       //HOME

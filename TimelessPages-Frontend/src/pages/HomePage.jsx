@@ -32,7 +32,10 @@ function HomePage() {
       <div className={home.home_container}>
         <h1>Welcome {user?.name}</h1>
         <div className={home.home_buttons}>
-          <div className={home.dashboard}>
+          <div
+            onClick={() => navigate("/dashboard")}
+            className={home.dashboard}
+          >
             <h2>Dashboard</h2>
           </div>
           <button onClick={handleLogout} className={home.logout}>

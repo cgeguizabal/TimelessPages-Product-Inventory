@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { registerUser } from "../api/services/auth.js";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/auth.js";
+import regStyles from "../styles/components/registration.module.scss";
 
 function RegistrationForm() {
   const navigate = useNavigate();
 
-  //Zustand login method
+  // Get the login function from the auth store
   const login = useAuthStore((state) => state.login);
 
-  //Form state
+  //form state
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,32 +19,36 @@ function RegistrationForm() {
   });
 
   const [loading, setLoading] = useState(false);
+
+  // Form validation errors
   const [errors, setErrors] = useState({});
 
-  //Handle form field changes
+  // Handle form field changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: null });
   };
 
+  // Form validation method
   const validate = () => {
+    // new errors object
     const newErrors = {};
 
-    // Name validation
+    //name validation
     if (!formData.name.trim()) newErrors.name = "Name is required";
     else if (formData.name.length < 3)
       newErrors.name = "Name must be at least 3 characters";
     else if (formData.name.length > 50)
       newErrors.name = "Name cannot exceed 50 characters";
 
-    // Email validation
+    // email validation
     if (!formData.email.trim()) newErrors.email = "Email is required";
     else if (!/^\S+@\S+\.\S+$/.test(formData.email))
       newErrors.email = "Email is invalid";
     else if (formData.email.length > 100)
       newErrors.email = "Email cannot exceed 100 characters";
 
-    // Password validation
+    // password validation
     if (!formData.password) newErrors.password = "Password is required";
     else if (formData.password.length < 6)
       newErrors.password = "Password must be at least 6 characters";
@@ -53,19 +58,18 @@ function RegistrationForm() {
       newErrors.password =
         "Password must include at least one letter and one number";
 
-    // Password confirmation
+    // password confirmation validation
     if (formData.password !== formData.password_confirmation)
       newErrors.password_confirmation = "Passwords do not match";
 
-    //Return the new errors object from above
     return newErrors;
   };
 
-  // Handle form submission
+  // Form submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors({});
-    const frontendErrors = validate(); // Validate form fields
+    setErrors({}); //resets form errors
+    const frontendErrors = validate();
     if (Object.keys(frontendErrors).length > 0) {
       setErrors(frontendErrors);
       return;
@@ -73,24 +77,18 @@ function RegistrationForm() {
 
     setLoading(true);
     try {
+      // Call the registerUser API function
       const result = await registerUser(formData);
 
-      // Save token in localStorage and update Zustand store
+      // If registration is successful, log in the user
       login(result.user, result.token);
 
-      alert("Registration successful! You can now log in.");
-      setFormData({
-        // This resets the form
-        name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-      });
+      // Redirect to the home page
       navigate("/home");
     } catch (error) {
-      // Backend errors
       if (error?.message) {
         try {
+          // Attempt to parse the error message
           const backendErrors = JSON.parse(error.message);
           setErrors(backendErrors);
         } catch {
@@ -102,20 +100,18 @@ function RegistrationForm() {
     }
   };
 
-  // Render error messages
+  // Error rendering method
   const renderError = (field) =>
-    errors[field] ? (
-      <p className="text-red-600 text-sm mt-1">{errors[field]}</p>
-    ) : null;
+    errors[field] ? <p className={regStyles.error}>{errors[field]}</p> : null;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6">Register</h2>
+    <div className={regStyles.page_wrapper}>
+      <div className={regStyles.form_container}>
+        <h2 className={regStyles.title}>Create Account</h2>
         {errors.general && (
-          <p className="text-red-600 text-center mb-4">{errors.general}</p>
+          <p className={regStyles.error_general}>{errors.general}</p>
         )}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className={regStyles.form}>
           <div>
             <input
               type="text"
@@ -123,10 +119,8 @@ function RegistrationForm() {
               value={formData.name}
               onChange={handleChange}
               placeholder="Name"
-              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                errors.name
-                  ? "border-red-500 focus:ring-red-500"
-                  : "focus:ring-blue-500"
+              className={`${regStyles.input} ${
+                errors.name ? regStyles.inputError : ""
               }`}
             />
             {renderError("name")}
@@ -139,10 +133,8 @@ function RegistrationForm() {
               value={formData.email}
               onChange={handleChange}
               placeholder="Email"
-              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                errors.email
-                  ? "border-red-500 focus:ring-red-500"
-                  : "focus:ring-blue-500"
+              className={`${regStyles.input} ${
+                errors.email ? regStyles.inputError : ""
               }`}
             />
             {renderError("email")}
@@ -155,10 +147,8 @@ function RegistrationForm() {
               value={formData.password}
               onChange={handleChange}
               placeholder="Password"
-              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                errors.password
-                  ? "border-red-500 focus:ring-red-500"
-                  : "focus:ring-blue-500"
+              className={`${regStyles.input} ${
+                errors.password ? regStyles.inputError : ""
               }`}
             />
             {renderError("password")}
@@ -171,29 +161,20 @@ function RegistrationForm() {
               value={formData.password_confirmation}
               onChange={handleChange}
               placeholder="Confirm Password"
-              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                errors.password_confirmation
-                  ? "border-red-500 focus:ring-red-500"
-                  : "focus:ring-blue-500"
+              className={`${regStyles.input} ${
+                errors.password_confirmation ? regStyles.inputError : ""
               }`}
             />
             {renderError("password_confirmation")}
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"
-          >
+          <button type="submit" disabled={loading} className={regStyles.button}>
             {loading ? "Registering..." : "Register"}
           </button>
         </form>
 
-        <p className="text-sm text-gray-600 mt-4 text-center">
-          Already registered?{" "}
-          <Link to="/login" className="text-blue-600 hover:underline">
-            Log in
-          </Link>
+        <p className={regStyles.register_text}>
+          Already registered? <Link to="/login">Log in</Link>
         </p>
       </div>
     </div>

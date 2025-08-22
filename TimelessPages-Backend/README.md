@@ -2,7 +2,7 @@
 
 **Tech Stack:** Laravel, Laravel Sanctum, MySQL, Postman, Railway
 
-**Postman Collection link:** [Click aquí](https://.postman.co/workspace/My-Workspace~fabd6659-33f8-4926-8597-842371a54b83/collection/41282147-a5b0c647-8827-4610-977c-2b0788cd8718?action=share&creator=41282147)
+**Postman Collection link:https://.postman.co/workspace/My-Workspace~fabd6659-33f8-4926-8597-842371a54b83/collection/41282147-a5b0c647-8827-4610-977c-2b0788cd8718?action=share&creator=41282147
 
 Aplicación creada para manejar el inventario de una librería, gestionada por **Vendedores** y **Administradores**, quienes son los usuarios con acceso a la plataforma. 📖✨
 

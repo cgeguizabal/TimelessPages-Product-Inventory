@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import { Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import useAuthStore from "./store/auth";
+import RegisterPurchase from "./pages/RegisterPurchase";
 
 function App() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -32,6 +33,7 @@ function App() {
         path="/login"
         element={isAuthenticated ? <Navigate to="/home" replace /> : <Login />}
       />
+      <Route path="/register-purchase" element={<RegisterPurchase />} />
       <Route path="/home" element={<HomePage />} />
     </Routes>
   );

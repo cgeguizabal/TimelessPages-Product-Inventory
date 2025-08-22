@@ -1,8 +1,12 @@
-import React, { useState } from "react";
 import LoginForm from "../components/LoginForm.jsx";
+import login from "../styles/page/loginPage.module.scss";
 
 function Login() {
-  return <LoginForm />;
+  return (
+    <div className={login.login_container}>
+      <LoginForm />
+    </div>
+  );
 }
 
 export default Login;

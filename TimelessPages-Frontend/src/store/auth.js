@@ -14,7 +14,7 @@ const useAuthStore = create(
       logout: () => set({ user: null, token: null, isAuthenticated: false }),
     }),
     {
-      name: "auth-storage", // key in localStorage
+      name: "auth-storage",
     }
   )
 );

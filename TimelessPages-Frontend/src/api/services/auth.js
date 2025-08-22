@@ -38,3 +38,26 @@ export async function login(data) {
     throw error.response?.data || error;
   }
 }
+
+export async function logout(token) {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/logout`,
+      {},
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error registering user:",
+      error.response?.data || error.message
+    );
+    throw error.response?.data || error;
+  }
+}

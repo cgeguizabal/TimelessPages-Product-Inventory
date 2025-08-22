@@ -45,18 +45,11 @@ TimelessPages es una plataforma de inventario para una librería. En este fronte
 ## 👥 Credenciales para probar la aplicación 🔐
 
 Puedes experimentar con las siguientes cuentas:
-
-- **Admin**
   - ✉️ email: useradmin1@gmail.com  
     🔑 password: 123456
   - ✉️ email: useradmin2@gmail.com  
     🔑 password: 123456
 
-- **Vendedor**
-  - ✉️ email: userSeller1@gmail.com  
-    🔑 password: 123456
-  - ✉️ email: userSeller2@gmail.com  
-    🔑 password: 123456
 
 > ⚠️ Nota: No incluyas las comillas al usar las credenciales.  
 

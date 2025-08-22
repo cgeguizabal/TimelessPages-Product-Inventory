@@ -1,5 +1,5 @@
 import React from "react";
-import boxbutton from "../styles/components/boxButton.module.scss";
+import boxbutton from "../styles/components/boxbutton.module.scss";
 
 function BoxButton({ title, className, onClick }) {
   return (

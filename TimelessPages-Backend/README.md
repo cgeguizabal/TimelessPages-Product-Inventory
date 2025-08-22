@@ -120,19 +120,25 @@ Actualmente la aplicación se encuentra en línea y puedes utilizarla sin ningú
 {
   "name": "UserAdmin1",
   "email": "useradmin1@gmail.com"
+  "password: "123456"
 }
 {
   "name": "UserAdmin2",
   "email": "useradmin2@gmail.com"
+  "password: "123456"
 }
 {
   "name": "UserSeller1",
   "email": "userSeller1@gmail.com"
+  "password: "123456"
 }
 {
   "name": "UserSeller2",
   "email": "userSeller2@gmail.com"
+  "password: "123456"
 }
+
+Usar credenciales sin las comillas
 ```
 
 Si quieres utilizarlos localmente, asegúrate de tener los siguientes requisitos en tu computadora:

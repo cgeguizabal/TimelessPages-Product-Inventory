@@ -45,9 +45,22 @@ function HomePage() {
         <div className={home.home_image_container}>
           <img src="timelessPages.png" alt="" />
         </div>
-        <BoxButton className={home.button_1} title={"Register Purchase"} />
-        <BoxButton className={home.button_2} title={"Register Sale"} />
-        <BoxButton className={home.button_3} title={"Register Product"} />
+
+        <BoxButton
+          onClick={() => navigate("/register-purchase")}
+          className={home.button_1}
+          title={"Register Purchase"}
+        />
+        <BoxButton
+          onClick={() => navigate("/register-sales")}
+          className={home.button_2}
+          title={"Register Sale"}
+        />
+        <BoxButton
+          onClick={() => navigate("/register-product")}
+          className={home.button_3}
+          title={"Register Product"}
+        />
       </div>
     </>
   );

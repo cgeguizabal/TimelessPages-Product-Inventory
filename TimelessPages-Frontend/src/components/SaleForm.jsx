@@ -1,67 +1,60 @@
 import { useEffect, useState } from "react";
-import { getSuppliers } from "../api/services/suppliersService";
+import { getClients } from "../api/services/clientService";
 import { getProducts } from "../api/services/productsService";
-import { createPurchase } from "../api/services/purchaseService";
+import { createSale } from "../api/services/salesService";
 import useAuthStore from "../store/auth";
-import purchaseStyles from "../styles/components/purchaseForm.module.scss";
+import salesStyles from "../styles/components/salesForm.module.scss";
 import { useNavigate } from "react-router-dom";
 
-function PurchaseForm() {
+function SalesForm() {
   const navigate = useNavigate();
-
   const { token, user } = useAuthStore();
-  // State for suppliers
-  const [suppliers, setSuppliers] = useState([]);
+
+  // State for clients
+  const [clients, setClients] = useState([]);
+  const [clientId, setClientId] = useState("");
 
   // State for products
   const [products, setProducts] = useState([]);
-
-  // State for form data
-  const [supplierId, setSupplierId] = useState("");
-
-  // State for product items
   const [items, setItems] = useState([{ id: "", quantity: 1 }]);
 
-  // State for error messages
+  // State for errors
   const [error, setError] = useState({});
 
+  // Fetch clients and products
   useEffect(() => {
     const fetchData = async () => {
       try {
-        //Get Suppliers
-        const suppliersData = await getSuppliers(token);
-        setSuppliers(suppliersData);
+        const clientsData = await getClients(token);
+        setClients(clientsData);
 
-        //Get Products
         const productsData = await getProducts(token);
         setProducts(productsData);
       } catch (err) {
-        console.error("Error fetching suppliers/products:", err);
+        console.error("Error fetching clients/products:", err);
       }
     };
     if (token) fetchData();
   }, [token]);
 
-  // Handle item change
+  // Handle product item change
   const handleItemChange = (index, field, value) => {
-    // Clone items array to avoid mutating state directly
     const updated = [...items];
     updated[index][field] = value;
     setItems(updated);
   };
 
-  // Add/Remove item
   const addItem = () => setItems([...items, { id: "", quantity: 1 }]);
   const removeItem = (index) => setItems(items.filter((_, i) => i !== index));
 
-  // Handle form submission
+  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError({});
 
-    // Validate supplier
-    if (!supplierId) {
-      setError({ supplier: "Supplier is required" });
+    // Validate client
+    if (!clientId) {
+      setError({ client: "Select an existing client" });
       return;
     }
 
@@ -73,9 +66,9 @@ function PurchaseForm() {
       }
     }
 
-    // Prepare data to send
+    // Prepare sale data
     const data = {
-      supplier_id: parseInt(supplierId),
+      client_id: parseInt(clientId),
       user_id: user?.id,
       products: items.map((p) => ({
         id: parseInt(p.id),
@@ -84,72 +77,63 @@ function PurchaseForm() {
     };
 
     try {
-      // Create purchase
-      await createPurchase(token, data);
-      alert("Purchase created successfully!");
-
-      // Reset Form
-      setSupplierId("");
+      await createSale(token, data);
+      alert("Sale created successfully!");
+      // Reset form
+      setClientId("");
       setItems([{ id: "", quantity: 1 }]);
-
-      navigate("/home"); // Redirect to home page
+      navigate("/home");
     } catch (err) {
       console.error(err);
-      alert("Failed to create purchase");
+      alert("Failed to create sale");
     }
   };
 
   return (
-    <div className={purchaseStyles.page_wrapper}>
-      <div className={purchaseStyles.form_container}>
-        <h2 className={purchaseStyles.title}>Register Purchase</h2>
+    <div className={salesStyles.page_wrapper}>
+      <div className={salesStyles.form_container}>
+        <h2 className={salesStyles.title}>Register Sale</h2>
 
-        {error.supplier && (
-          <p className={purchaseStyles.error_general}>{error.supplier}</p>
+        {error.client && (
+          <p className={salesStyles.error_general}>{error.client}</p>
         )}
         {error.items && (
-          <p className={purchaseStyles.error_general}>{error.items}</p>
+          <p className={salesStyles.error_general}>{error.items}</p>
         )}
 
-        <form onSubmit={handleSubmit} className={purchaseStyles.form}>
-          {/* Supplier */}
+        <form onSubmit={handleSubmit} className={salesStyles.form}>
+          {/* Client selection */}
           <div>
             <select
-              value={supplierId}
-              onChange={(e) => setSupplierId(e.target.value)}
-              className={purchaseStyles.input}
+              value={clientId}
+              onChange={(e) => setClientId(e.target.value)}
+              className={salesStyles.input}
             >
-              <option value="">Select supplier</option>
-              {suppliers.length > 0 ? (
-                suppliers.map((s) => (
-                  <option key={s.id} value={s.id}>
-                    {s.name}
+              <option value="">Select existing client</option>
+              {clients.length > 0 &&
+                clients.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
                   </option>
-                ))
-              ) : (
-                <option disabled>No suppliers found</option>
-              )}
+                ))}
             </select>
           </div>
 
           {/* Products */}
           {items.map((item, index) => (
-            <div key={index} className={purchaseStyles.product_item}>
+            <div key={index} className={salesStyles.product_item}>
               <select
                 value={item.id}
                 onChange={(e) => handleItemChange(index, "id", e.target.value)}
-                className={purchaseStyles.input}
+                className={salesStyles.input}
               >
                 <option value="">Select product</option>
-                {products.length > 0 ? (
+                {products.length > 0 &&
                   products.map((p) => (
                     <option key={p.id} value={p.id}>
                       {p.name} (${p.unit_price})
                     </option>
-                  ))
-                ) : (
-                  <option disabled>No products found</option>
-                )}
+                  ))}
               </select>
 
               <input
@@ -159,13 +143,13 @@ function PurchaseForm() {
                   handleItemChange(index, "quantity", e.target.value)
                 }
                 min="1"
-                className={purchaseStyles.input}
+                className={salesStyles.input}
               />
 
               <button
                 type="button"
                 onClick={() => removeItem(index)}
-                className={purchaseStyles.remove_btn}
+                className={salesStyles.remove_btn}
               >
                 ❌
               </button>
@@ -175,13 +159,13 @@ function PurchaseForm() {
           <button
             type="button"
             onClick={addItem}
-            className={purchaseStyles.add_btn}
+            className={salesStyles.add_btn}
           >
-            ➕ Add Book
+            ➕ Add product
           </button>
 
-          <button type="submit" className={purchaseStyles.button}>
-            Create Purchase
+          <button type="submit" className={salesStyles.button}>
+            Create Sale
           </button>
         </form>
       </div>
@@ -189,4 +173,4 @@ function PurchaseForm() {
   );
 }
 
-export default PurchaseForm;
+export default SalesForm;

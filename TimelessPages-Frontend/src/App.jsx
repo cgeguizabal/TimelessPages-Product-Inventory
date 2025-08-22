@@ -6,6 +6,8 @@ import { Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import useAuthStore from "./store/auth";
 import RegisterPurchase from "./pages/RegisterPurchase";
+import RegisterSales from "./pages/RegisterSales";
+import RegisterProduct from "./pages/RegisterProduct";
 
 function App() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -22,18 +24,46 @@ function App() {
           )
         }
       />
-      //////////////////////////////////////////////////
+      ////////////////////////////////////////////////// //Register
       <Route
         path="/register"
         element={
           isAuthenticated ? <Navigate to="/home" replace /> : <Register />
         }
       />
+      //LOGIN
       <Route
         path="/login"
         element={isAuthenticated ? <Navigate to="/home" replace /> : <Login />}
       />
-      <Route path="/register-purchase" element={<RegisterPurchase />} />
+      //Register purchase
+      <Route
+        path="/register-purchase"
+        element={
+          isAuthenticated ? (
+            <RegisterPurchase />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      //Register Sales
+      <Route
+        path="/register-sales"
+        element={
+          isAuthenticated ? <RegisterSales /> : <Navigate to="/login" replace />
+        }
+      />
+
+      //RegisterProduct
+
+      <Route
+        path="/register-product"
+        element={
+          isAuthenticated ? <RegisterProduct /> : <Navigate to="/login" replace />
+        }
+      />
+      //HOME
       <Route path="/home" element={<HomePage />} />
     </Routes>
   );

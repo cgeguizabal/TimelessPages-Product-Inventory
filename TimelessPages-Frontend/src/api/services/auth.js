@@ -17,7 +17,7 @@ export async function registerUser(data) {
       "Error registering user:",
       error.response?.data || error.message
     );
-    throw error.response?.data || error;
+    throw error.response?.data || error.message;
   }
 }
 
@@ -32,10 +32,10 @@ export async function login(data) {
     return response.data;
   } catch (error) {
     console.error(
-      "Error registering user:",
+      "Error loging in user:",
       error.response?.data || error.message
     );
-    throw error.response?.data || error;
+    throw error.response?.data || error.message;
   }
 }
 
@@ -55,9 +55,9 @@ export async function logout(token) {
     return response.data;
   } catch (error) {
     console.error(
-      "Error registering user:",
+      "Error loging out user:",
       error.response?.data || error.message
     );
-    throw error.response?.data || error;
+    throw error.response?.data || error.message;
   }
 }

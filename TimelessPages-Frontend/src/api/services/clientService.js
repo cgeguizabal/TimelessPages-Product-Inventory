@@ -3,9 +3,9 @@ import axios from "axios";
 const BASE_URL =
   "https://timelesspages-product-inventory-production.up.railway.app/api";
 
-export const createProduct = async (token, data) => {
+export const getClients = async (token) => {
   try {
-    const response = await axios.post(`${BASE_URL}/products`, data, {
+    const response = await axios.get(`${BASE_URL}/clients`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -15,22 +15,26 @@ export const createProduct = async (token, data) => {
     return response.data;
   } catch (error) {
     console.error(
-      "Error creating product:",
+      "Error fetching client:",
       error.response?.data || error.message
     );
     throw error.response?.data || error.message;
   }
 };
 
-export const getProducts = async (token) => {
+export const createClient = async (token) => {
   try {
-    const response = await axios.get(`${BASE_URL}/products`, {
-      headers: { Authorization: `Bearer ${token}` },
+    const response = await axios.post(`${BASE_URL}/clients`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
+
     return response.data;
   } catch (error) {
     console.error(
-      "Error getting products:",
+      "Error Creating Client:",
       error.response?.data || error.message
     );
     throw error.response?.data || error.message;

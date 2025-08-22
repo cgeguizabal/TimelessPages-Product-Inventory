@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/auth";
 import home from "../styles/page/home.module.scss";
-import BoxButton from "../components/boxButton";
+import BoxButton from "../components/BoxButton";
 import { logout } from "../api/services/auth";
 
 function HomePage() {

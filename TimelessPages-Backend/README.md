@@ -22,7 +22,7 @@ Aplicación creada para manejar el inventario de una librería, gestionada por *
 - 📅 **Reporte de ventas** filtradas por fechas  
 - 🧾 **Reporte de compras** filtrado por proveedores  
 
-**Dominio de la aplicación:** [Timeless Pages API](https://timelesspages-product-inventory-production.up.railway.app/api)
+**Dominio de la aplicación:** [Timeless Pages API](https://timelesspages-product-inventory-production.up.railway.app)
 
 > ⚠️ Nota: El prefijo `v1` no se incluyó en las rutas iniciales de la API para facilitar el desarrollo y las pruebas. Reconozco que la versionación es importante para el mantenimiento y la compatibilidad hacia atrás, y se implementará antes de que la API entre en producción.
 

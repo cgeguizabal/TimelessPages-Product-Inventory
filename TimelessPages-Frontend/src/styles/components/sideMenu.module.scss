@@ -1,0 +1,44 @@
+.sideMenu {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  background-color: #f0ebde;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+.logo_container {
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4.5rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+.menuItem {
+  background: none;
+  border: none;
+  color: #473728;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #f2c576;
+    color: #ffffff;
+  }
+}
+
+.active {
+  background-color: #473728;
+  color: #f2c576;
+}

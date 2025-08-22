@@ -37,7 +37,7 @@ TimelessPages es una plataforma de inventario para una librería. En este fronte
   - 📦 Registrar compras con selección múltiple
   - 📚 Registro de nuevos libros
 
-- **📊 Dashboard (solo admin):**
+- **📊 Dashboard:**
   - 📈 Tabla con reporte de stock en tiempo real
   - 📅 Tabla con reporte de ventas filtrado por fecha
   - 🗂️ SideMenu con múltiples opciones para futuras funcionalidades

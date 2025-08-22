@@ -31,7 +31,9 @@ Para instrucciones de instalación, configuración local, credenciales de prueba
 
 ## 🌐 Live Demo
 
-- Frontend: [TimelessPages Live](https://timeless-pages-product-inventory-gk.vercel.app/register)  
+- Frontend: [TimelessPages Live](https://timeless-pages-product-inventory-gk.vercel.app/)  
+- Backend: [TimelessPages Live](https://timelesspages-product-inventory-production.up.railway.app/)
+
 
 ---
 

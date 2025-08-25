@@ -18,7 +18,7 @@ function HomePage() {
 
   const handleLogout = async () => {
     try {
-      await logout(); // try to log out on backend
+      await logout(token); // try to log out on backend
     } catch (error) {
       // If token is invalid/expired → just clear locally
       if (error.response?.status === 401) {

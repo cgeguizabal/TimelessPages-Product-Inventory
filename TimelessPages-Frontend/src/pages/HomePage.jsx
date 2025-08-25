@@ -18,12 +18,19 @@ function HomePage() {
 
   const handleLogout = async () => {
     try {
-      await logout(token);
+      await logout(token); // try to log out on backend
+    } catch (error) {
+      // If token is invalid/expired → just clear locally
+      if (error.response?.status === 401) {
+        console.warn("Token expired or invalid. Clearing locally.");
+      } else {
+        console.error("Logout failed:", error);
+        alert("Something went wrong. Logging you out locally.");
+      }
+    } finally {
+      // Always clear client-side no matter what
       clearAuth();
       navigate("/login");
-    } catch (error) {
-      console.error("Logout failed:", error);
-      alert("Failed to log out. Please try again.");
     }
   };
 

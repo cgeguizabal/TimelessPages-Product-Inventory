@@ -32,12 +32,14 @@ function HomePage() {
       <div className={home.home_container}>
         <h1>Welcome {user?.name}</h1>
         <div className={home.home_buttons}>
-          <div
-            onClick={() => navigate("/dashboard")}
-            className={home.dashboard}
-          >
-            <h2>Dashboard</h2>
-          </div>
+          {user.role === "admin" && (
+            <div
+              onClick={() => navigate("/dashboard")}
+              className={home.dashboard}
+            >
+              <h2>Dashboard</h2>
+            </div>
+          )}
           <button onClick={handleLogout} className={home.logout}>
             <h2>Logout</h2>
           </button>
@@ -48,22 +50,26 @@ function HomePage() {
         <div className={home.home_image_container}>
           <img src="timelessPages.png" alt="" />
         </div>
+        {user.role === "admin" && (
+          <BoxButton
+            onClick={() => navigate("/register-purchase")}
+            className={home.button_1}
+            title={"Register Purchase"}
+          />
+        )}
 
-        <BoxButton
-          onClick={() => navigate("/register-purchase")}
-          className={home.button_1}
-          title={"Register Purchase"}
-        />
         <BoxButton
           onClick={() => navigate("/register-sales")}
           className={home.button_2}
           title={"Register Sale"}
         />
-        <BoxButton
-          onClick={() => navigate("/register-product")}
-          className={home.button_3}
-          title={"Register Product"}
-        />
+        {user.role === "admin" && (
+          <BoxButton
+            onClick={() => navigate("/register-product")}
+            className={home.button_3}
+            title={"Register Product"}
+          />
+        )}
       </div>
     </>
   );

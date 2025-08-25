@@ -60,7 +60,7 @@ function HomePage() {
 
         <BoxButton
           onClick={() => navigate("/register-sales")}
-          className={home.button_2}
+          className={user.role === "seller" ? home.button_4 : home.button_2}
           title={"Register Sale"}
         />
         {user.role === "admin" && (

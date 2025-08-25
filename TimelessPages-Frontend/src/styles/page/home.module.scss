@@ -52,7 +52,7 @@
   margin-bottom: 1rem;
   color: gray;
   background-color: #f0ebde;
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   grid-template-columns:
     [full-start] minmax(6rem, 1fr)
@@ -84,17 +84,31 @@
     grid-column: 3 / 5;
     grid-row: 3 / 4;
     justify-self: center;
+    width: 20rem;
+    height: 20rem;
   }
 
   &_2 {
     grid-column: 5 / 7;
     grid-row: 3 / 4;
     justify-self: center;
+    width: 20rem;
+    height: 20rem;
   }
 
   &_3 {
     grid-column: 7 / 9;
     grid-row: 3 / 4;
     justify-self: center;
+    width: 20rem;
+    height: 20rem;
+  }
+
+  &_4 {
+    grid-column: 3 / 9;
+    grid-row: 3 / 4;
+    justify-self: center;
+    width: 80rem;
+    height: 20rem;
   }
 }

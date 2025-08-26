@@ -21,7 +21,8 @@ function SalesReport() {
         to: `${toDate} 23:59:59`,
       };
 
-      const response = await fetchSalesReport(token, body);
+      const response = await fetchSalesReport(body); //Add token when using normal axios without axiosInstance
+
       setSales(response.data || []);
     } catch (err) {
       console.error("Error fetching sales report:", err);

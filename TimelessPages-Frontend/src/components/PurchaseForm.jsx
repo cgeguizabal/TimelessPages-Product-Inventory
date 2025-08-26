@@ -29,11 +29,11 @@ function PurchaseForm() {
     const fetchData = async () => {
       try {
         //Get Suppliers
-        const suppliersData = await getSuppliers(token);
+        const suppliersData = await getSuppliers(); //Add token when using normal axios without axiosInstance
         setSuppliers(suppliersData);
 
         //Get Products
-        const productsData = await getProducts(token);
+        const productsData = await getProducts(); //Add token when using normal axios without axiosInstance
         setProducts(productsData);
       } catch (err) {
         console.error("Error fetching suppliers/products:", err);
@@ -85,7 +85,7 @@ function PurchaseForm() {
 
     try {
       // Create purchase
-      await createPurchase(token, data);
+      await createPurchase(data); //Add token when using normal axios without axiosInstance
       alert("Purchase created successfully!");
 
       // Reset Form

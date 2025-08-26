@@ -50,7 +50,7 @@ function ProductForm() {
 
     try {
       // Force JSON stringification to match Postman exactly
-      const response = await createProduct(token, data);
+      const response = await createProduct(data); //Add token when using normal axios without axiosInstance
       console.log("Server response:", response);
 
       alert("Book created successfully!");

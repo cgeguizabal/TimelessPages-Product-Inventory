@@ -77,7 +77,7 @@ function SalesForm() {
     };
 
     try {
-      await createSale(token, data);
+      await createSale(data); //Add token when using normal axios without axiosInstance
       alert("Sale created successfully!");
       // Reset form
       setClientId("");

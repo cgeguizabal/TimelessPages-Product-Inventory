@@ -4,7 +4,8 @@ import { apiGet, apiPost } from "./axiosInstance";
 const BASE_URL =
   "https://timelesspages-product-inventory-production.up.railway.app/api";
 
-export const getClients = async (token) => {
+export const getClients = () => {
+  //Add token and async when using normal axios without axiosInstance
   return apiGet("/clients");
   /* //Use in the case there's individual logic from axiosIntances
   try {
@@ -25,9 +26,10 @@ export const getClients = async (token) => {
   }*/
 };
 
-export const createClient = async (token) => {
+export const createClient = () => {
+  //Add token and async when using normal axios without axiosInstance
   return apiPost("clients");
-  /* // se in the case there's individual logic from axiosIntances
+  /* // Use in the case there's individual logic from axiosIntances
   try {
     const response = await axios.post(`${BASE_URL}/clients`, {
       headers: {

@@ -1,9 +1,13 @@
-import axios from "axios";
+// import axios from "axios";
+import { apiGet } from "./axiosInstance";
 
 const BASE_URL =
   "https://timelesspages-product-inventory-production.up.railway.app/api";
 
-export const getSuppliers = async (token) => {
+export const getSuppliers = () => {
+  //Add token and async when using normal axios without axiosInstance
+  return apiGet("/suppliers");
+  /* //Use in the case there's individual logic from axiosIntances
   try {
     const response = await axios.get(`${BASE_URL}/suppliers`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -15,5 +19,5 @@ export const getSuppliers = async (token) => {
       error.response?.data || error.message
     );
     throw error.message?.data || error.message;
-  }
+  }*/
 };

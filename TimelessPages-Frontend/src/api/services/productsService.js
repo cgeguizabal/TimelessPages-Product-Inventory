@@ -4,7 +4,8 @@ import { apiGet, apiPost } from "./axiosInstance";
 const BASE_URL =
   "https://timelesspages-product-inventory-production.up.railway.app/api";
 
-export const createProduct = async (token, data) => {
+export const createProduct = (data) => {
+  //Add token and async when using normal axios without axiosInstance
   return apiPost("/products", data);
   /* //Use in the case there's individual logic from axiosIntances
   try {
@@ -25,7 +26,8 @@ export const createProduct = async (token, data) => {
   }*/
 };
 
-export const getProducts = async () => {
+export const getProducts = () => {
+  //Add token and async when using normal axios without axiosInstance
   return apiGet("/products");
   /* //Use in the case there's individual logic from axiosIntances
   try {

@@ -28,7 +28,7 @@ function ProductForm() {
     // Parse numbers safely
 
     // Unable to fix bug, it seems JavaScript is not sending decimals correctly
-    const parsedUnitPrice = Math.round(parseFloat(unitPrice) * 100) / 100;
+    const parsedUnitPrice = parseFloat(parseFloat(unitPrice).toFixed(2));
     console.log(typeof parsedUnitPrice);
 
     const parsedStock = parseInt(stock);

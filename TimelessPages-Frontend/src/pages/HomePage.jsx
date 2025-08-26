@@ -16,6 +16,8 @@ function HomePage() {
     }
   }, [isAuthenticated, navigate]);
 
+  if (!isAuthenticated) return null;
+
   const handleLogout = async () => {
     try {
       await logout(); // try to log out on backend //Add token when using normal axios without axiosInstance

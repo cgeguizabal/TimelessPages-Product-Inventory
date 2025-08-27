@@ -84,12 +84,12 @@ body {
   min-height: 100vh;
   grid-template-rows:
     [full-start]minmax(2rem, 1fr)
-    [center-start] repeat(4, [row-start] minmax(8rem, 10rem) [row-end])
+    [center-start] repeat(4, [row-start] minmax(8rem, 12rem) [row-end])
     [center-end] minmax(2rem, 1fr)
     [full-end];
   grid-template-columns:
     [full-start] minmax(6rem, 1fr)
-    [center-start] repeat(8, [col-start] minmax(8rem, 14rem) [col-end])
+    [center-start] repeat(8, [col-start] minmax(8rem, 12rem) [col-end])
     [center-end] minmax(6rem, 1fr) [full-end];
 
   gap: 2rem;

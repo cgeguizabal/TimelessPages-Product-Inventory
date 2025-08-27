@@ -103,6 +103,8 @@
   justify-content: center;
   grid-column: 2 / 10;
   grid-row: 2 / 6;
+  max-height: 80rem;
+
   @media (max-width: $bp-medium) {
     grid-column: 1 / -1;
     grid-row: 2 / 4;
@@ -116,14 +118,14 @@
   border-radius: 2rem;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 180rem;
+  max-width: 125rem;
   font-size: 1.6rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 10px;
   overflow: hidden;
-  max-height: 50rem;
+  max-height: 70rem;
   @media (max-width: $bp-medium) {
     max-width: 50rem;
     max-height: 90rem;

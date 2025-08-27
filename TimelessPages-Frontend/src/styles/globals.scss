@@ -80,7 +80,7 @@ body {
 .container {
   display: grid;
   min-width: 100vw;
-  background-color: #f0ebde;
+  // background-color: #f0ebde;
   min-height: 100vh;
   grid-template-rows:
     [full-start]minmax(2rem, 1fr)
@@ -95,16 +95,13 @@ body {
   gap: 2rem;
   @media (max-width: $bp-medium) {
     grid-template-columns:
-      [full-start-mobile] minmax(3rem, 1fr) [center-star-mobile] minmax(
-        8rem,
-        50rem
-      )
+      [full-start-mobile] minmax(3rem, 1fr) [center-star-mobile]
+      minmax(8rem, 50rem)
       [center-end-mobile] minmax(3rem, 1fr) [full-end-mobile];
 
     grid-template-rows:
       [full-start-mobile]minmax(2rem, 1fr)
-      [center-start-mobile] repeat(3, minmax(15rem, 20rem))
-      minmax(5rem, 10rem) repeat(7, minmax(15rem, 20rem))
+      [center-start-mobile] repeat(2, minmax(15rem, 45rem))
       [center-end-mobile] minmax(2rem, 1fr)
       [full-end-mobile];
   }

@@ -3,7 +3,7 @@ import useAuthStore from "../../store/auth";
 
 const api = axios.create({
   baseURL:
-    "https://timelesspages-product-inventory-production.up.railway.app/api",
+    "https://timelesspages-product-inventory-production.up.railway.app/api/v1",
   headers: {
     "Content-Type": "application/json",
   },

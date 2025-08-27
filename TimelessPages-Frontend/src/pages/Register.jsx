@@ -3,7 +3,7 @@ import registrationStyles from "../styles/page/registrationPage.module.scss";
 
 function Register() {
   return (
-    <div className={registrationStyles.registration_container}>
+    <div className={`container ${registrationStyles.registration_container}`}>
       <RegistrationForm />
     </div>
   );

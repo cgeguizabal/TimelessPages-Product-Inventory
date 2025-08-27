@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL =
-  "https://timelesspages-product-inventory-production.up.railway.app/api";
+  "https://timelesspages-product-inventory-production.up.railway.app/api/v1";
 
 export const getStockReport = async (token) => {
   try {

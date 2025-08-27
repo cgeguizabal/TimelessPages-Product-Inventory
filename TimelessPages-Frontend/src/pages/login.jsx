@@ -3,7 +3,7 @@ import login from "../styles/page/loginPage.module.scss";
 
 function Login() {
   return (
-    <div className={login.login_container}>
+    <div className={`container ${login.login_container}`}>
       <LoginForm />
     </div>
   );

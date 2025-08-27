@@ -62,6 +62,7 @@ function LoginForm() {
     error[field] ? <p className={loginStyles.error}>{error[field]}</p> : null;
 
   return (
+    /*// Old login component
     <div className={loginStyles.page_wrapper}>
       <div className={loginStyles.form_container}>
         <h2 className={loginStyles.title}>Log In</h2>
@@ -108,6 +109,69 @@ function LoginForm() {
         <p className={loginStyles.register_text}>
           Don't have an account? <Link to="/register">Register</Link>
         </p>
+      </div>
+    </div>*/
+    // New Login form
+    <div className={loginStyles.page_wrapper_v2}>
+      <div className={loginStyles.form_container_v2}>
+        <div className={loginStyles.leftside}>
+          <div className={loginStyles.image_container}>
+            <img
+              className={loginStyles.cover_image}
+              src="coverImage.jpg"
+              alt="Cover Image"
+            />
+            <div className={loginStyles.logo_container}>
+              <img src="timelessPages.png" alt="Timeless Pages logo " />
+            </div>
+          </div>
+        </div>
+        <div className={loginStyles.rightside}>
+          <h2 className={loginStyles.title}>Log In</h2>
+          {error.general && (
+            <p className={loginStyles.error_general}>{error.general}</p>
+          )}
+          <form onSubmit={handleSubmit} className={loginStyles.form}>
+            <div>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className={`${loginStyles.input} ${
+                  error.email ? loginStyles.inputError : ""
+                }`}
+              />
+              {renderError("email")}
+            </div>
+
+            <div>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Password"
+                className={`${loginStyles.input} ${
+                  error.password ? loginStyles.inputError : ""
+                }`}
+              />
+              {renderError("password")}
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className={loginStyles.button}
+            >
+              {loading ? "Logging in..." : "Log In"}
+            </button>
+          </form>
+          <p className={loginStyles.register_text}>
+            Don't have an account? <Link to="/register">Register</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

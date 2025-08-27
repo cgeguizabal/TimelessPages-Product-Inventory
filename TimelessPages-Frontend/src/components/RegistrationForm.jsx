@@ -186,9 +186,10 @@ function RegistrationForm() {
       </div>
     </div>*/
 
+    // New Registration Form
     <div className={regStyles.page_wrapper_v2}>
       <div className={regStyles.form_container_v2}>
-        <div className={regStyles.rightside}>
+        <div className={regStyles.leftside}>
           <div className={regStyles.image_container}>
             <img
               className={regStyles.cover_image}
@@ -200,7 +201,7 @@ function RegistrationForm() {
             </div>
           </div>
         </div>
-        <div className={regStyles.leftside}>
+        <div className={regStyles.rightside}>
           <h2 className={regStyles.title}>Create Account</h2>
           {errors.general && (
             <p className={regStyles.error_general}>{errors.general}</p>

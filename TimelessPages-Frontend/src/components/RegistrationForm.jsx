@@ -86,14 +86,20 @@ function RegistrationForm() {
       // Redirect to the home page
       navigate("/home");
     } catch (error) {
-      if (error?.message) {
-        try {
-          // Attempt to parse the error message
-          const backendErrors = JSON.parse(error.message);
-          setErrors(backendErrors);
-        } catch {
-          setErrors({ general: error.message });
-        }
+      if (error?.errors) {
+        // Laravel validation errors
+        setErrors(
+          Object.fromEntries(
+            Object.entries(error.errors).map(([field, msgs]) => [
+              field,
+              msgs[0],
+            ])
+          )
+        );
+      } else if (error?.message) {
+        setErrors({ general: error.message });
+      } else {
+        setErrors({ general: "Something went wrong. Please try again." });
       }
     } finally {
       setLoading(false);
@@ -105,6 +111,7 @@ function RegistrationForm() {
     errors[field] ? <p className={regStyles.error}>{errors[field]}</p> : null;
 
   return (
+    /*  // Registration Form alternative
     <div className={regStyles.page_wrapper}>
       <div className={regStyles.form_container}>
         <h2 className={regStyles.title}>Create Account</h2>
@@ -176,6 +183,99 @@ function RegistrationForm() {
         <p className={regStyles.register_text}>
           Already registered? <Link to="/login">Log in</Link>
         </p>
+      </div>
+    </div>*/
+
+    <div className={regStyles.page_wrapper_v2}>
+      <div className={regStyles.form_container_v2}>
+        <div className={regStyles.rightside}>
+          <div className={regStyles.image_container}>
+            <img
+              className={regStyles.cover_image}
+              src="coverImage3.jpg"
+              alt="Cover Image"
+            />
+            <div className={regStyles.logo_container}>
+              <img src="timelessPages.png" alt="Timeless Pages logo " />
+            </div>
+          </div>
+        </div>
+        <div className={regStyles.leftside}>
+          <h2 className={regStyles.title}>Create Account</h2>
+          {errors.general && (
+            <p className={regStyles.error_general}>{errors.general}</p>
+          )}
+          <form onSubmit={handleSubmit} className={regStyles.form}>
+            {/* Name Field */}
+            <div>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Name"
+                className={`${regStyles.input} ${
+                  errors.name ? regStyles.inputError : ""
+                }`}
+              />
+              {renderError("name")}
+            </div>
+            {/* Email Field */}
+            <div>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className={`${regStyles.input} ${
+                  errors.email ? regStyles.inputError : ""
+                }`}
+              />
+              {renderError("email")}
+            </div>
+            {/* Password Field */}
+            <div>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Password"
+                className={`${regStyles.input} ${
+                  errors.password ? regStyles.inputError : ""
+                }`}
+              />
+              {renderError("password")}
+            </div>
+
+            {/* password_confirmation */}
+            <div>
+              <input
+                type="password"
+                name="password_confirmation"
+                value={formData.password_confirmation}
+                onChange={handleChange}
+                placeholder="Confirm Password"
+                className={`${regStyles.input} ${
+                  errors.password_confirmation ? regStyles.inputError : ""
+                }`}
+              />
+              {renderError("password_confirmation")}
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className={regStyles.button}
+            >
+              {loading ? "Registering..." : "Register"}
+            </button>
+          </form>
+          <p className={regStyles.register_text}>
+            Already registered? <Link to="/login">Log in</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

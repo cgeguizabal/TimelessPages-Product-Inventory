@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../api/services/auth";
 import useAuthStore from "../store/auth";
 import loginStyles from "../styles/components/login.module.scss";
+import { motion } from "motion/react";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -112,7 +113,17 @@ function LoginForm() {
       </div>
     </div>*/
     // New Login form
-    <div className={loginStyles.page_wrapper_v2}>
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -100 }}
+      transition={{
+        delay: 0.1,
+        y: { duration: 0.5, ease: "easeInOut" },
+        opacity: { duration: 0.5, ease: "easeOut" },
+      }}
+      className={loginStyles.page_wrapper_v2}
+    >
       <div className={loginStyles.form_container_v2}>
         <div className={loginStyles.leftside}>
           <div className={loginStyles.image_container}>
@@ -127,7 +138,10 @@ function LoginForm() {
           </div>
         </div>
         <div className={loginStyles.rightside}>
-          <h2 className={loginStyles.title}>Log In</h2>
+          <div className={loginStyles.header}>
+            <h2 className={loginStyles.title}>Log In</h2>
+            <p>Please log in to continue to your account</p>
+          </div>
           {error.general && (
             <p className={loginStyles.error_general}>{error.general}</p>
           )}
@@ -173,7 +187,7 @@ function LoginForm() {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

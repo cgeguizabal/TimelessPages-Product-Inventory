@@ -4,6 +4,7 @@ import useAuthStore from "../store/auth";
 import home from "../styles/page/home.module.scss";
 import BoxButton from "../components/BoxButton";
 import { logout } from "../api/services/auth";
+import { motion } from "motion/react";
 
 function HomePage() {
   const { user, token, isAuthenticated, logout: clearAuth } = useAuthStore();
@@ -42,16 +43,33 @@ function HomePage() {
         <h1 className={home.hidden}>Welcome {user?.name}</h1>
         <div className={home.home_buttons}>
           {user.role === "admin" && (
-            <div
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                delay: 0.1,
+                x: { duration: 0.5, ease: "easeInOut" },
+                opacity: { duration: 1.5, ease: "easeOut" },
+              }}
               onClick={() => navigate("/dashboard")}
               className={home.dashboard}
             >
               <h2>Dashboard</h2>
-            </div>
+            </motion.div>
           )}
-          <button onClick={handleLogout} className={home.logout}>
+          <motion.button
+            initial={{ opacity: 0, x: 105 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              delay: 0.9,
+              x: { duration: 0.5, ease: "easeInOut" },
+              opacity: { duration: 1.5, ease: "easeOut" },
+            }}
+            onClick={handleLogout}
+            className={home.logout}
+          >
             <h2>Logout</h2>
-          </button>
+          </motion.button>
         </div>
       </div>
 

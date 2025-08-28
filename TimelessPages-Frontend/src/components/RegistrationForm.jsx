@@ -3,6 +3,7 @@ import { registerUser } from "../api/services/auth.js";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/auth.js";
 import regStyles from "../styles/components/registration.module.scss";
+import { motion } from "motion/react";
 
 function RegistrationForm() {
   const navigate = useNavigate();
@@ -111,7 +112,7 @@ function RegistrationForm() {
     errors[field] ? <p className={regStyles.error}>{errors[field]}</p> : null;
 
   return (
-    /*  // Registration Form alternative
+    /*// Registration Form alternative
     <div className={regStyles.page_wrapper}>
       <div className={regStyles.form_container}>
         <h2 className={regStyles.title}>Create Account</h2>
@@ -187,7 +188,17 @@ function RegistrationForm() {
     </div>*/
 
     // New Registration Form
-    <div className={regStyles.page_wrapper_v2}>
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -100 }}
+      transition={{
+        delay: 0.1,
+        y: { duration: 0.5, ease: "easeInOut" },
+        opacity: { duration: 0.5, ease: "easeOut" },
+      }}
+      className={regStyles.page_wrapper_v2}
+    >
       <div className={regStyles.form_container_v2}>
         <div className={regStyles.leftside}>
           <div className={regStyles.image_container}>
@@ -203,6 +214,7 @@ function RegistrationForm() {
         </div>
         <div className={regStyles.rightside}>
           <h2 className={regStyles.title}>Create Account</h2>
+          <p>Please create an account to continue</p>
           {errors.general && (
             <p className={regStyles.error_general}>{errors.general}</p>
           )}
@@ -278,7 +290,7 @@ function RegistrationForm() {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

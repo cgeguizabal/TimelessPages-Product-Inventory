@@ -171,5 +171,12 @@
     grid-column: 3 / 9;
     grid-row: 3 / 4;
     justify-self: center;
+    width: 50rem !important;
+    @media (max-width: $bp-medium) {
+      margin-top: 0;
+      grid-column: 2/3;
+
+      align-self: center;
+    }
   }
 }

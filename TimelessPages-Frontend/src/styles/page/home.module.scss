@@ -1,3 +1,5 @@
+@use "../variables.scss" as *;
+
 .home_container {
   grid-column: 1 / 10;
   display: flex;
@@ -87,6 +89,19 @@
 
     z-index: -1;
   }
+
+  @media (max-width: $bp-medium) {
+    grid-template-columns:
+      [full-start-mobile] minmax(3rem, 1fr) [center-star-mobile]
+      minmax(8rem, 50rem)
+      [center-end-mobile] minmax(3rem, 1fr) [full-end-mobile];
+
+    grid-template-rows:
+      [full-start-mobile]minmax(2rem, 1fr)
+      [center-start-mobile] repeat(4, minmax(15rem, 25rem))
+      [center-end-mobile] minmax(2rem, 1fr)
+      [full-end-mobile];
+  }
 }
 
 .home_image_container {
@@ -102,6 +117,12 @@
     height: auto;
     border-radius: 8px;
   }
+  @media (max-width: $bp-medium) {
+    margin-top: 0;
+    grid-column: 2/3;
+    grid-row: 2 / 3;
+    align-self: center;
+  }
 }
 
 .button {
@@ -109,18 +130,33 @@
     grid-column: 3 / 5;
     grid-row: 3 / 4;
     justify-self: center;
+    @media (max-width: $bp-medium) {
+      grid-column: 2/3;
+      grid-row: 3 / 4;
+      align-self: center;
+    }
   }
 
   &_2 {
     grid-column: 5 / 7;
     grid-row: 3 / 4;
     justify-self: center;
+    @media (max-width: $bp-medium) {
+      grid-column: 2/3;
+      grid-row: 4 / 5;
+      align-self: center;
+    }
   }
 
   &_3 {
     grid-column: 7 / 9;
     grid-row: 3 / 4;
     justify-self: center;
+    @media (max-width: $bp-medium) {
+      grid-column: 2/3;
+      grid-row: 5 / 6;
+      align-self: center;
+    }
   }
 
   &_4 {

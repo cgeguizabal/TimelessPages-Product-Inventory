@@ -1,3 +1,5 @@
+@use "../variables.scss" as *;
+
 .box_button {
   background-color: #f2c576;
   border: none;
@@ -30,6 +32,10 @@
     .box_image_container {
       transform: scale(165%) translateY(-20%);
     }
+  }
+  @media (max-width: $bp-medium) {
+    width: 40rem;
+    height: 20rem;
   }
 }
 

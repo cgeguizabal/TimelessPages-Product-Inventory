@@ -39,7 +39,7 @@ function HomePage() {
   return (
     <>
       <div className={home.home_container}>
-        <h1>Welcome {user?.name}</h1>
+        <h1 className={home.hidden}>Welcome {user?.name}</h1>
         <div className={home.home_buttons}>
           {user.role === "admin" && (
             <div

@@ -57,7 +57,7 @@ function HomePage() {
 
       <div className={home.home_container2}>
         <div className={home.home_image_container}>
-          <img src="timelessPages.png" alt="logo" />
+          <img src="timelessPages2.png" alt="logo" />
         </div>
         {user.role === "admin" && (
           <BoxButton

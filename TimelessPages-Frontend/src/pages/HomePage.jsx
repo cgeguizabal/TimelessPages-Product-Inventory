@@ -64,6 +64,7 @@ function HomePage() {
             onClick={() => navigate("/register-purchase")}
             className={home.button_1}
             title={"Register Purchase"}
+            image={"iconRegisterPurchase.png"}
           />
         )}
 
@@ -71,12 +72,14 @@ function HomePage() {
           onClick={() => navigate("/register-sales")}
           className={user.role === "seller" ? home.button_4 : home.button_2}
           title={"Register Sale"}
+          image={"iconRegisterSale.png"}
         />
         {user.role === "admin" && (
           <BoxButton
             onClick={() => navigate("/register-product")}
             className={home.button_3}
             title={"Register Product"}
+            image={"iconRegisterBook.png"}
           />
         )}
       </div>

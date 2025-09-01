@@ -1,0 +1,63 @@
+@use "../variables.scss" as *;
+
+.nav_container {
+  grid-column: 1 / 10;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  text-align: center;
+  padding: 2rem;
+  background-color: #f1e3c2;
+
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.792);
+  font-size: 3rem;
+  color: #473728;
+  height: 8rem;
+}
+
+.hidden {
+  @media (max-width: $bp-medium) {
+    display: none;
+  }
+}
+
+.nav_buttons {
+  position: absolute;
+  right: 6rem;
+  display: flex;
+  gap: 3rem;
+  @media (max-width: $bp-medium) {
+    right: 2rem;
+  }
+}
+
+.dashboard {
+  font-size: 2rem;
+  background-color: #f2c576;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  color: #473728;
+
+  &:hover {
+    background-color: darkseagreen;
+    cursor: pointer;
+    color: #ffffff;
+  }
+}
+
+.logout {
+  font-size: 2rem;
+  background-color: darkseagreen;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #473728;
+    color: #f2c576;
+    cursor: pointer;
+  }
+}

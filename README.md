@@ -1,34 +1,34 @@
 # TimelessPages 📚
 
-TimelessPages es un proyecto completo para la gestión de inventario de una librería. Este repositorio contiene tanto el **backend** como el **frontend**, permitiendo a los administradores y vendedores manejar productos, ventas, compras, clientes y proveedores de manera eficiente.
+TimelessPages is a complete project for bookstore inventory management. This repository contains both the **backend** and the **frontend**, allowing administrators and sellers to efficiently manage products, sales, purchases, customers, and suppliers.
 
-## 🚀 Descripción
+## 🚀 Description
 
-El proyecto está dividido en dos partes principales:
+The project is divided into two main parts:
 
-- **Backend**: Construido con Laravel, Laravel Sanctum y MySQL, proporciona APIs seguras para la gestión de usuarios, productos, compras, ventas y reportes.
-- **Frontend**: Construido con React, Vite, Zustand y SASS, permite a los usuarios interactuar con la plataforma de forma intuitiva a través de formularios, tablas y dashboards.
+- **Backend**: Built with Laravel, Laravel Sanctum, and MySQL, it provides secure APIs for managing users, products, purchases, sales, and reports.
+- **Frontend**: Built with React, Vite, Zustand, and SASS, it allows users to intuitively interact with the platform through forms, tables, and dashboards.
 
-## 🗂️ Contenido del repositorio
+## 🗂️ Repository Content
 
-Dentro de este repositorio encontrarás:
+Inside this repository you will find:
 
-- Carpeta del **frontend** con toda la interfaz de usuario y sus dependencias.
-- Carpeta del **backend** con el API RESTful y la base de datos MySQL.
-- Documentación adicional y ejemplos de uso de la API.
-- Colección de Postman para probar los endpoints de manera rápida.
-- Documento de Diagrama EER
+- **Frontend** folder with the entire user interface and its dependencies.
+- **Backend** folder with the RESTful API and MySQL database.
+- Additional documentation and API usage examples.
+- Postman collection to quickly test endpoints.
+- EER Diagram document.
 
-## 💡 Funcionalidades principales
+## 💡 Main Features
 
-- Registro y autenticación de usuarios con roles (Admin y Seller).
-- Gestión completa de productos, compras, ventas, proveedores y clientes.
-- Dashboards y reportes filtrables para monitorear stock y ventas.
-- Integración con la API mediante Bearer Tokens.
+- User registration and authentication with roles (Admin and Seller).
+- Full management of products, purchases, sales, suppliers, and customers.
+- Filterable dashboards and reports to monitor stock and sales.
+- API integration via Bearer Tokens.
 
-## 📌 Información adicional
+## 📌 Additional Information
 
-Para instrucciones de instalación, configuración local, credenciales de prueba y documentación detallada de los endpoints, revisa los README de las carpetas **frontend** y **backend**.
+For installation instructions, local setup, test credentials, and detailed endpoint documentation, check the README files in the **frontend** and **backend** folders.
 
 ## 🌐 Live Demo
 
@@ -37,4 +37,4 @@ Para instrucciones de instalación, configuración local, credenciales de prueba
 
 ---
 
-Este repositorio sirve como base para la expansión de la plataforma y futuras mejoras, incluyendo funcionalidades avanzadas, reportes y control de permisos más detallado.
+This repository serves as a foundation for platform expansion and future improvements, including advanced features, reports, and more detailed permission control.

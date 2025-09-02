@@ -5,6 +5,7 @@ import { createPurchase } from "../api/services/purchaseService";
 import useAuthStore from "../store/auth";
 import purchaseStyles from "../styles/components/purchaseForm.module.scss";
 import { useNavigate } from "react-router-dom";
+import { motion } from "motion/react";
 
 function PurchaseForm() {
   const navigate = useNavigate();
@@ -101,7 +102,16 @@ function PurchaseForm() {
 
   return (
     <div className={purchaseStyles.page_wrapper}>
-      <div className={purchaseStyles.form_container}>
+      <motion.div
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.1,
+          x: { duration: 0.5, ease: "easeInOut" },
+          opacity: { duration: 1.5, ease: "easeOut" },
+        }}
+        className={purchaseStyles.form_container}
+      >
         <h2 className={purchaseStyles.title}>Register Purchase</h2>
 
         {error.supplier && (
@@ -184,7 +194,7 @@ function PurchaseForm() {
             Create Purchase
           </button>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 }

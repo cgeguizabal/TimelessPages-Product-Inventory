@@ -1,10 +1,12 @@
 .page_wrapper {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
   background: none;
+
+  grid-column: 3 / 9;
+  grid-row: 2 / 5;
 }
 
 .form_container {
@@ -13,7 +15,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 40rem;
+  max-width: 50rem;
   font-size: 1.6rem;
 
   @media (max-width: 768px) {

@@ -101,101 +101,101 @@ function PurchaseForm() {
   };
 
   return (
-    <div className={purchaseStyles.page_wrapper}>
-      <motion.div
-        initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.1,
-          x: { duration: 0.5, ease: "easeInOut" },
-          opacity: { duration: 1.5, ease: "easeOut" },
-        }}
-        className={purchaseStyles.form_container}
-      >
-        <h2 className={purchaseStyles.title}>Register Purchase</h2>
+    // <div className={purchaseStyles.page_wrapper}>
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.1,
+        x: { duration: 0.5, ease: "easeInOut" },
+        opacity: { duration: 1.5, ease: "easeOut" },
+      }}
+      className={purchaseStyles.form_container}
+    >
+      <h2 className={purchaseStyles.title}>Register Purchase</h2>
 
-        {error.supplier && (
-          <p className={purchaseStyles.error_general}>{error.supplier}</p>
-        )}
-        {error.items && (
-          <p className={purchaseStyles.error_general}>{error.items}</p>
-        )}
+      {error.supplier && (
+        <p className={purchaseStyles.error_general}>{error.supplier}</p>
+      )}
+      {error.items && (
+        <p className={purchaseStyles.error_general}>{error.items}</p>
+      )}
 
-        <form onSubmit={handleSubmit} className={purchaseStyles.form}>
-          {/* Supplier */}
-          <div>
+      <form onSubmit={handleSubmit} className={purchaseStyles.form}>
+        {/* Supplier */}
+        <div>
+          <select
+            value={supplierId}
+            onChange={(e) => setSupplierId(e.target.value)}
+            className={purchaseStyles.input}
+          >
+            <option value="">Select supplier</option>
+            {suppliers.length > 0 ? (
+              suppliers.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.name}
+                </option>
+              ))
+            ) : (
+              <option disabled>No suppliers found</option>
+            )}
+          </select>
+        </div>
+
+        {/* Products */}
+        {items.map((item, index) => (
+          <div key={index} className={purchaseStyles.product_item}>
             <select
-              value={supplierId}
-              onChange={(e) => setSupplierId(e.target.value)}
+              value={item.id}
+              onChange={(e) => handleItemChange(index, "id", e.target.value)}
               className={purchaseStyles.input}
             >
-              <option value="">Select supplier</option>
-              {suppliers.length > 0 ? (
-                suppliers.map((s) => (
-                  <option key={s.id} value={s.id}>
-                    {s.name}
+              <option value="">Select product</option>
+              {products.length > 0 ? (
+                products.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name} (${p.unit_price})
                   </option>
                 ))
               ) : (
-                <option disabled>No suppliers found</option>
+                <option disabled>No products found</option>
               )}
             </select>
+
+            <input
+              type="number"
+              value={item.quantity}
+              onChange={(e) =>
+                handleItemChange(index, "quantity", e.target.value)
+              }
+              min="1"
+              className={purchaseStyles.input}
+            />
+
+            <button
+              type="button"
+              onClick={() => removeItem(index)}
+              className={purchaseStyles.remove_btn}
+            >
+              ❌
+            </button>
           </div>
+        ))}
 
-          {/* Products */}
-          {items.map((item, index) => (
-            <div key={index} className={purchaseStyles.product_item}>
-              <select
-                value={item.id}
-                onChange={(e) => handleItemChange(index, "id", e.target.value)}
-                className={purchaseStyles.input}
-              >
-                <option value="">Select product</option>
-                {products.length > 0 ? (
-                  products.map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.name} (${p.unit_price})
-                    </option>
-                  ))
-                ) : (
-                  <option disabled>No products found</option>
-                )}
-              </select>
+        <button
+          type="button"
+          onClick={addItem}
+          className={purchaseStyles.add_btn}
+        >
+          ➕ Add Book
+        </button>
 
-              <input
-                type="number"
-                value={item.quantity}
-                onChange={(e) =>
-                  handleItemChange(index, "quantity", e.target.value)
-                }
-                min="1"
-                className={purchaseStyles.input}
-              />
-
-              <button
-                type="button"
-                onClick={() => removeItem(index)}
-                className={purchaseStyles.remove_btn}
-              >
-                ❌
-              </button>
-            </div>
-          ))}
-
-          <button
-            type="button"
-            onClick={addItem}
-            className={purchaseStyles.add_btn}
-          >
-            ➕ Add Book
-          </button>
-
-          <button type="submit" className={purchaseStyles.button}>
-            Create Purchase
-          </button>
-        </form>
-      </motion.div>
-    </div>
+        <button type="submit" className={purchaseStyles.button}>
+          Create Purchase
+        </button>
+      </form>
+    </motion.div>
+    // </div>
   );
 }
 

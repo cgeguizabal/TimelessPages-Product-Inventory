@@ -15,7 +15,7 @@
     [center-end] minmax(6rem, 1fr) [full-end];
   grid-template-rows:
     [full-start]minmax(2rem, 1fr)
-    [center-start] repeat(3, [row-start] minmax(10rem, 20rem) [row-end])
+    [center-start] repeat(4, [row-start] minmax(10rem, 20rem) [row-end])
     [center-end] minmax(2rem, 1fr)
     [full-end];
 
@@ -46,16 +46,33 @@
       [center-end-mobile] minmax(3rem, 1fr) [full-end-mobile];
 
     grid-template-rows:
-      [full-start-mobile]minmax(2rem, 1fr)
-      [center-start-mobile] repeat(4, minmax(15rem, 25rem))
+      [full-start-mobile]minmax(2rem, 10rem)
+      [center-start-mobile] repeat(3, minmax(15rem, 20rem))
       [center-end-mobile] minmax(2rem, 1fr)
       [full-end-mobile];
   }
 }
 
+.logo_container {
+  grid-column: 5 / 7;
+  grid-row: 2 / 3;
+  align-self: center;
+  justify-self: center;
+  width: 15rem;
+  height: 15rem;
+  margin-top: 2rem;
+  @media (max-width: $bp-medium) {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    width: 20rem;
+    height: 20rem;
+    align-self: center;
+  }
+}
+
 .backButton {
   grid-column: 3 / 4;
-  grid-row: 2 / 3;
+  grid-row: 3 / 4;
   color: #473728;
   background-color: #f6f1e5;
   width: 5rem;
@@ -64,13 +81,23 @@
   align-items: center;
   justify-content: center;
   border-radius: 15%;
-  align-self: end;
+  align-self: start;
   justify-self: end;
-  margin-bottom: 1.8rem;
+  margin-bottom: 0.3rem;
+  box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.2);
   z-index: 2;
+
   &:hover {
     background-color: darkseagreen;
     cursor: pointer;
     color: #ffffff;
+  }
+
+  @media (max-width: $bp-medium) {
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: start;
+    grid-row: 3 / 4;
+    margin-bottom: 0;
   }
 }

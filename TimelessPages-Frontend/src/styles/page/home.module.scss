@@ -47,7 +47,7 @@
       [center-end-mobile] minmax(3rem, 1fr) [full-end-mobile];
 
     grid-template-rows:
-      [full-start-mobile]minmax(2rem, 1fr)
+      [full-start-mobile]minmax(2rem, 2rem)
       [center-start-mobile] repeat(4, minmax(15rem, 25rem))
       [center-end-mobile] minmax(2rem, 1fr)
       [full-end-mobile];

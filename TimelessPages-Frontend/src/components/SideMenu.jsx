@@ -4,19 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 function SideMenu({ selected, onSelect }) {
   const navigate = useNavigate();
-  const menuItems = [
-    "Stock",
-    "Purchases",
-    "Sales",
-    "Suppliers",
-    "Clients",
-    "Users",
-  ];
+  const menuItems = ["Stock", "Sales", "Suppliers", "Clients", "Users"];
 
   return (
     <nav className={styles.sideMenu}>
       <div onClick={() => navigate("/home")} className={styles.logo_container}>
-        <img src="timelessPages.png" alt="" />
+        <img src="timelessPages.png" alt="logo" />
       </div>
       {menuItems.map((item) => (
         <button

@@ -5,6 +5,7 @@ import { getStockReport } from "../api/services/stockService";
 import useAuthStore from "../store/auth";
 import styles from "../styles/page/dashboard.module.scss";
 import SalesReport from "../components/SalesReport";
+import SuppliersTable from "../components/SuppliersTable";
 
 function Dashboard() {
   const [selectedMenu, setSelectedMenu] = useState("Stock");
@@ -32,6 +33,7 @@ function Dashboard() {
       <div className={styles.content}>
         {selectedMenu === "Stock" && <StockTable stockData={stockData} />}
         {selectedMenu === "Sales" && <SalesReport />}
+        {selectedMenu === "Suppliers" && <SuppliersTable />}
       </div>
     </div>
   );

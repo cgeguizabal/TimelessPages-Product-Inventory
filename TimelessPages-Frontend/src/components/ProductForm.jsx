@@ -4,6 +4,8 @@ import useAuthStore from "../store/auth";
 import productStyles from "../styles/components/productForm.module.scss";
 import { useNavigate } from "react-router-dom";
 
+import { motion } from "motion/react";
+
 function ProductForm() {
   const navigate = useNavigate();
   const { token } = useAuthStore();
@@ -69,52 +71,61 @@ function ProductForm() {
   };
 
   return (
-    <div className={productStyles.page_wrapper}>
-      <div className={productStyles.form_container}>
-        <h2 className={productStyles.title}>Register Book</h2>
+    // <div className={productStyles.page_wrapper}>
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.1,
+        x: { duration: 0.5, ease: "easeInOut" },
+        opacity: { duration: 1.5, ease: "easeOut" },
+      }}
+      className={productStyles.form_container}
+    >
+      <h2 className={productStyles.title}>Register Book</h2>
 
-        {error.general && (
-          <p className={productStyles.error_general}>{error.general}</p>
-        )}
+      {error.general && (
+        <p className={productStyles.error_general}>{error.general}</p>
+      )}
 
-        <form onSubmit={handleSubmit} className={productStyles.form}>
-          <input
-            type="text"
-            placeholder="Book Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className={productStyles.input}
-          />
-          <textarea
-            placeholder="Book Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className={productStyles.input}
-          />
-          <input
-            type="number"
-            placeholder="Unit Price"
-            value={unitPrice}
-            onChange={(e) => setUnitPrice(e.target.value)}
-            min="0"
-            step="0.01"
-            className={productStyles.input}
-          />
-          <input
-            type="number"
-            placeholder="Stock Quantity"
-            value={stock}
-            onChange={(e) => setStock(e.target.value)}
-            min="0"
-            className={productStyles.input}
-          />
+      <form onSubmit={handleSubmit} className={productStyles.form}>
+        <input
+          type="text"
+          placeholder="Book Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className={productStyles.input}
+        />
+        <textarea
+          placeholder="Book Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className={productStyles.input}
+        />
+        <input
+          type="number"
+          placeholder="Unit Price"
+          value={unitPrice}
+          onChange={(e) => setUnitPrice(e.target.value)}
+          min="0"
+          step="0.01"
+          className={productStyles.input}
+        />
+        <input
+          type="number"
+          placeholder="Stock Quantity"
+          value={stock}
+          onChange={(e) => setStock(e.target.value)}
+          min="0"
+          className={productStyles.input}
+        />
 
-          <button type="submit" className={productStyles.button}>
-            Create Book
-          </button>
-        </form>
-      </div>
-    </div>
+        <button type="submit" className={productStyles.button}>
+          Create Book
+        </button>
+      </form>
+    </motion.div>
+    // </div>
   );
 }
 

@@ -15,30 +15,57 @@
 .table {
   width: 100%;
   border-collapse: collapse;
+}
 
-  th,
-  td {
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 0.6rem;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f0ebde;
+}
+
+.table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* ---------- MOBILE FRIENDLY ---------- */
+@media (max-width: 768px) {
+  .table,
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td,
+  .table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .table thead {
+    display: none; /* hide the header on small screens */
+  }
+
+  .table tr {
+    margin-bottom: 1rem;
     border: 1px solid #ddd;
-    padding: 0.6rem;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background: #fff;
+  }
+
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    text-align: right;
+  }
+
+  .table td::before {
+    content: attr(data-label); /* uses the data-label attribute */
+    font-weight: bold;
     text-align: left;
   }
-
-  th {
-    background-color: #f0ebde;
-  }
-
-  tr:nth-child(even) {
-    background-color: #fafafa;
-  }
-}
-
-.noData {
-  text-align: center;
-  font-style: italic;
-  padding: 1rem;
-}
-
-.error {
-  color: red;
-  font-weight: bold;
 }

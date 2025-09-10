@@ -6,7 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import useAuthStore from "./store/auth";
 import RegisterPurchase from "./pages/RegisterPurchase";
-import RegisterSales from "./pages/RegisterSales";
+import RegisterSale from "./pages/RegisterSale";
 import RegisterProduct from "./pages/RegisterProduct";
 import Dashboard from "./pages/Dashboard";
 
@@ -52,7 +52,7 @@ function App() {
       <Route
         path="/register-sales"
         element={
-          isAuthenticated ? <RegisterSales /> : <Navigate to="/login" replace />
+          isAuthenticated ? <RegisterSale /> : <Navigate to="/login" replace />
         }
       />
       //RegisterProduct

@@ -1,0 +1,103 @@
+@use "../variables.scss" as *;
+.container {
+  grid-column: 1 / 10;
+  position: relative;
+
+  font-size: 2.5rem;
+
+  color: gray;
+  background-color: #f0ebde;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(6rem, 1fr)
+    [center-start] repeat(8, [col-start] minmax(8rem, 14rem) [col-end])
+    [center-end] minmax(6rem, 1fr) [full-end];
+  grid-template-rows:
+    [full-start]minmax(2rem, 1fr)
+    [center-start] repeat(4, [row-start] minmax(10rem, 20rem) [row-end])
+    [center-end] minmax(2rem, 1fr)
+    [full-end];
+
+  z-index: 1;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: hsla(35, 36%, 28%, 0.29);
+    background-image: url("/imageBackground4.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    opacity: 0.8;
+    background-blend-mode: darken; // blends image + overlay
+
+    z-index: -1;
+  }
+
+  @media (max-width: $bp-medium) {
+    grid-template-columns:
+      [full-start-mobile] minmax(3rem, 1fr) [center-star-mobile]
+      minmax(8rem, 50rem)
+      [center-end-mobile] minmax(3rem, 1fr) [full-end-mobile];
+
+    grid-template-rows:
+      [full-start-mobile]minmax(2rem, 10rem)
+      [center-start-mobile] repeat(3, minmax(15rem, 20rem))
+      [center-end-mobile] minmax(2rem, 1fr)
+      [full-end-mobile];
+  }
+}
+
+.logo_container {
+  grid-column: 5 / 7;
+  grid-row: 2 / 3;
+  align-self: center;
+  justify-self: center;
+  width: 15rem;
+  height: 15rem;
+  margin-top: 2rem;
+  @media (max-width: $bp-medium) {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    width: 20rem;
+    height: 20rem;
+    align-self: center;
+  }
+}
+
+.backButton {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+  color: #473728;
+  background-color: #f6f1e5;
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15%;
+  align-self: start;
+  justify-self: end;
+  margin-bottom: 0.3rem;
+  box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.2);
+  z-index: 2;
+
+  &:hover {
+    background-color: darkseagreen;
+    cursor: pointer;
+    color: #ffffff;
+  }
+
+  @media (max-width: $bp-medium) {
+    grid-column: 2 / 3;
+    align-self: start;
+    justify-self: start;
+    grid-row: 3 / 4;
+    margin-bottom: 0;
+  }
+}

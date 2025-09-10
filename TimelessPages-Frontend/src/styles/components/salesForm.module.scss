@@ -1,3 +1,5 @@
+@use "../variables.scss" as *;
+
 .page_wrapper {
   min-height: 100vh;
   display: flex;
@@ -5,6 +7,13 @@
   align-items: center;
   padding: 2rem;
   background: none;
+
+  @media (max-width: $bp-medium) {
+    grid-column: 2 / 3;
+    padding: 0;
+    grid-row: 4 / 5;
+    margin-top: 0;
+  }
 }
 
 .form_container {
@@ -13,11 +22,22 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 40rem;
+  width: 50rem;
   font-size: 1.6rem;
+  grid-column: 3 / 9;
+  grid-row: 3 / 6;
+  height: fit-content;
+  align-self: start;
+  justify-self: center;
 
   @media (max-width: 768px) {
     padding: 2rem;
+  }
+
+  @media (max-width: $bp-medium) {
+    grid-column: 2 / 3;
+    grid-row: 3/ 5;
+    width: 42rem;
   }
 }
 

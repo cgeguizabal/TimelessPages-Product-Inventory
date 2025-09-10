@@ -6,6 +6,8 @@ import useAuthStore from "../store/auth";
 import salesStyles from "../styles/components/salesForm.module.scss";
 import { useNavigate } from "react-router-dom";
 
+import { motion } from "motion/react";
+
 function SalesForm() {
   const navigate = useNavigate();
   const { token, user } = useAuthStore();
@@ -90,86 +92,91 @@ function SalesForm() {
   };
 
   return (
-    <div className={salesStyles.page_wrapper}>
-      <div className={salesStyles.form_container}>
-        <h2 className={salesStyles.title}>Register Sale</h2>
+    // <div className={salesStyles.page_wrapper}>
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.1,
+        x: { duration: 0.5, ease: "easeInOut" },
+        opacity: { duration: 1.5, ease: "easeOut" },
+      }}
+      className={salesStyles.form_container}
+    >
+      <h2 className={salesStyles.title}>Register Sale</h2>
 
-        {error.client && (
-          <p className={salesStyles.error_general}>{error.client}</p>
-        )}
-        {error.items && (
-          <p className={salesStyles.error_general}>{error.items}</p>
-        )}
+      {error.client && (
+        <p className={salesStyles.error_general}>{error.client}</p>
+      )}
+      {error.items && (
+        <p className={salesStyles.error_general}>{error.items}</p>
+      )}
 
-        <form onSubmit={handleSubmit} className={salesStyles.form}>
-          {/* Client selection */}
-          <div>
+      <form onSubmit={handleSubmit} className={salesStyles.form}>
+        {/* Client selection */}
+        <div>
+          <select
+            value={clientId}
+            onChange={(e) => setClientId(e.target.value)}
+            className={salesStyles.input}
+          >
+            <option value="">Select existing client</option>
+            {clients.length > 0 &&
+              clients.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                </option>
+              ))}
+          </select>
+        </div>
+
+        {/* Products */}
+        {items.map((item, index) => (
+          <div key={index} className={salesStyles.product_item}>
             <select
-              value={clientId}
-              onChange={(e) => setClientId(e.target.value)}
+              value={item.id}
+              onChange={(e) => handleItemChange(index, "id", e.target.value)}
               className={salesStyles.input}
             >
-              <option value="">Select existing client</option>
-              {clients.length > 0 &&
-                clients.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
+              <option value="">Select product</option>
+              {products.length > 0 &&
+                products.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name} (${p.unit_price})
                   </option>
                 ))}
             </select>
+
+            <input
+              type="number"
+              value={item.quantity}
+              onChange={(e) =>
+                handleItemChange(index, "quantity", e.target.value)
+              }
+              min="1"
+              className={salesStyles.input}
+            />
+
+            <button
+              type="button"
+              onClick={() => removeItem(index)}
+              className={salesStyles.remove_btn}
+            >
+              ❌
+            </button>
           </div>
+        ))}
 
-          {/* Products */}
-          {items.map((item, index) => (
-            <div key={index} className={salesStyles.product_item}>
-              <select
-                value={item.id}
-                onChange={(e) => handleItemChange(index, "id", e.target.value)}
-                className={salesStyles.input}
-              >
-                <option value="">Select product</option>
-                {products.length > 0 &&
-                  products.map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.name} (${p.unit_price})
-                    </option>
-                  ))}
-              </select>
+        <button type="button" onClick={addItem} className={salesStyles.add_btn}>
+          ➕ Add product
+        </button>
 
-              <input
-                type="number"
-                value={item.quantity}
-                onChange={(e) =>
-                  handleItemChange(index, "quantity", e.target.value)
-                }
-                min="1"
-                className={salesStyles.input}
-              />
-
-              <button
-                type="button"
-                onClick={() => removeItem(index)}
-                className={salesStyles.remove_btn}
-              >
-                ❌
-              </button>
-            </div>
-          ))}
-
-          <button
-            type="button"
-            onClick={addItem}
-            className={salesStyles.add_btn}
-          >
-            ➕ Add product
-          </button>
-
-          <button type="submit" className={salesStyles.button}>
-            Create Sale
-          </button>
-        </form>
-      </div>
-    </div>
+        <button type="submit" className={salesStyles.button}>
+          Create Sale
+        </button>
+      </form>
+    </motion.div>
+    // </div>
   );
 }
 

@@ -1,40 +1,40 @@
 # TimelessPages 📚
 
-TimelessPages is a complete project for bookstore inventory management. This repository contains both the **backend** and the **frontend**, allowing administrators and sellers to efficiently manage products, sales, purchases, customers, and suppliers.
+TimelessPages es un proyecto completo para la gestión de inventario de librerías. Este repositorio contiene tanto el **backend** como el **frontend**, permitiendo a administradores y vendedores gestionar de manera eficiente productos, ventas, compras, clientes y proveedores.
 
-## 🚀 Description
+## 🚀 Descripción
 
-The project is divided into two main parts:
+El proyecto está dividido en dos partes principales:
 
-- **Backend**: Built with Laravel, Laravel Sanctum, and MySQL, it provides secure APIs for managing users, products, purchases, sales, and reports.
-- **Frontend**: Built with React, Vite, Zustand, and SASS, it allows users to intuitively interact with the platform through forms, tables, and dashboards.
+- **Backend**: Construido con Laravel, Laravel Sanctum y MySQL, provee APIs seguras para la gestión de usuarios, productos, compras, ventas y reportes.
+- **Frontend**: Construido con React, Vite, Zustand y SASS, permite a los usuarios interactuar de forma intuitiva con la plataforma mediante formularios, tablas y paneles.
 
-## 🗂️ Repository Content
+## 🗂️ Contenido del Repositorio
 
-Inside this repository you will find:
+Dentro de este repositorio encontrarás:
 
-- **Frontend** folder with the entire user interface and its dependencies.
-- **Backend** folder with the RESTful API and MySQL database.
-- Additional documentation and API usage examples.
-- Postman collection to quickly test endpoints.
-- EER Diagram document.
+- Carpeta **Frontend** con toda la interfaz de usuario y sus dependencias.
+- Carpeta **Backend** con la API RESTful y la base de datos MySQL.
+- Documentación adicional y ejemplos de uso de la API.
+- Colección de Postman para probar rápidamente los endpoints.
+- Documento del Diagrama EER.
 
-## 💡 Main Features
+## 💡 Funcionalidades Principales
 
-- User registration and authentication with roles (Admin and Seller).
-- Full management of products, purchases, sales, suppliers, and customers.
-- Filterable dashboards and reports to monitor stock and sales.
-- API integration via Bearer Tokens.
+- Registro y autenticación de usuarios con roles (Administrador y Vendedor).
+- Gestión completa de productos, compras, ventas, proveedores y clientes.
+- Paneles y reportes filtrables para monitorear inventario y ventas.
+- Integración de la API mediante Bearer Tokens.
 
-## 📌 Additional Information
+## 📌 Información Adicional
 
-For installation instructions, local setup, test credentials, and detailed endpoint documentation, check the README files in the **frontend** and **backend** folders.
+Para instrucciones de instalación, configuración local, credenciales de prueba y documentación detallada de endpoints, revisa los archivos README en las carpetas **frontend** y **backend**.
 
-## 🌐 Live Demo
+## 🌐 Demo en Línea
 
 - Frontend: [TimelessPages Live](https://timeless-pages-product-inventory-gk.vercel.app/)
 - Backend: [TimelessPages Live](https://timelesspages-product-inventory-production.up.railway.app/)
 
 ---
 
-This repository serves as a foundation for platform expansion and future improvements, including advanced features, reports, and more detailed permission control.
+Este repositorio sirve como base para la expansión de la plataforma y futuras mejoras, incluyendo funcionalidades avanzadas, reportes y un control más detallado de permisos.

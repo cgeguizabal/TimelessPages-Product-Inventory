@@ -1,63 +1,63 @@
 # TimelessPages 📚
 
-TimelessPages is an inventory platform for a bookstore. In this frontend, you can interact with the backend of the same project.
+TimelessPages es una plataforma de inventario para una librería. En este **frontend** puedes interactuar con el **backend** del mismo proyecto.
 
-## 🌐 Live Demo 🚀
+## 🌐 Demo en Línea 🚀
 
-[TimelessPages in action](https://timeless-pages-product-inventory-gk.vercel.app/)
+[TimelessPages en acción](https://timeless-pages-product-inventory-gk.vercel.app/)
 
-## 🛠️ Tech Stack 💻
+## 🛠️ Stack Tecnológico 💻
 
 - ⚡ Vite
 - ⚛️ React
 - 📝 JavaScript
-- 🎨 Tailwind CSS (used for initial tests)
+- 🎨 Tailwind CSS (utilizado para pruebas iniciales)
 - 🎨 SASS
 - 🗂️ Zustand
 - 🔀 React Router
 - 📡 Axios
 
-## ⚡ Features ✨
+## ⚡ Funcionalidades ✨
 
-- **🆕 User Registration:** allows you to create an account with name, email, password, and password confirmation. From this component, you can also access the login.
+- **🆕 Registro de Usuario:** permite crear una cuenta con nombre, correo, contraseña y confirmación de contraseña. Desde este componente también se puede acceder al inicio de sesión.
 
-  - Zustand saves the token in `localStorage` using `persist` to keep the session active.
-  - All new users are **sellers by default**; only administrators can change the role.
+  - Zustand guarda el token en `localStorage` usando `persist` para mantener la sesión activa.
+  - Todos los usuarios nuevos son **vendedores por defecto**; solo los administradores pueden cambiar el rol.
 
-- **🔑 Login:** allows entering credentials and authenticating the user.
+- **🔑 Inicio de Sesión (Login):** permite ingresar credenciales y autenticar al usuario.
 
-  - Zustand stores the token and user information using `persist`.
-  - Then, the user is redirected to the main page (Home).
+  - Zustand almacena el token y la información del usuario usando `persist`.
+  - Luego, el usuario es redirigido a la página principal (Home).
 
-- **🏠 Home:** includes a menu with the following options:
+- **🏠 Página Principal (Home):** incluye un menú con las siguientes opciones:
 
-  - 🛒 Register Purchase
-  - 💰 Register Sale
-  - 📦 Register Product
+  - 🛒 Registrar Compra
+  - 💰 Registrar Venta
+  - 📦 Registrar Producto
   - 📊 Dashboard
-  - 🚪 Logout
+  - 🚪 Cerrar Sesión
 
-- **📝 Action Forms:**
+- **📝 Formularios de Acción:**
 
-  - 🛒 Register sales with multiple selection
-  - 📦 Register purchases with multiple selection
-  - 📚 Register new books
+  - 🛒 Registrar ventas con selección múltiple
+  - 📦 Registrar compras con selección múltiple
+  - 📚 Registrar nuevos libros
 
 - **📊 Dashboard:**
-  - 📈 Table with real-time stock report
-  - 📅 Table with sales report filtered by date
-  - 🗂️ SideMenu with multiple options for future functionalities
+  - 📈 Tabla con reporte de inventario en tiempo real
+  - 📅 Tabla con reporte de ventas filtrado por fecha
+  - 🗂️ Menú lateral (SideMenu) con múltiples opciones para futuras funcionalidades
 
-## 👥 Test Credentials 🔐
+## 👥 Credenciales de Prueba 🔐
 
-You can try the application with the following accounts:
+Puedes probar la aplicación con las siguientes cuentas:
 
-- ✉️ email: useradmin1@gmail.com  
-  🔑 password: 123456
-- ✉️ email: useradmin2@gmail.com  
-  🔑 password: 123456
+- ✉️ correo: useradmin1@gmail.com  
+  🔑 contraseña: 123456
+- ✉️ correo: useradmin2@gmail.com  
+  🔑 contraseña: 123456
 
-> ⚠️ Note: Do not include quotation marks when using the credentials.
+> ⚠️ Nota: No incluyas comillas al usar las credenciales.
 
-You can also create a new user, but remember you will be a **seller** and won’t have permissions to create purchases or register books.  
-The main permission of a seller is **to create sales**.
+También puedes crear un nuevo usuario, pero recuerda que serás **vendedor** y no tendrás permisos para registrar compras ni productos.  
+El principal permiso de un vendedor es **crear ventas**.

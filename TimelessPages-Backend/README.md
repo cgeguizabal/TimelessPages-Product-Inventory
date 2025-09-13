@@ -1,120 +1,120 @@
 # 📚 Timeless Pages Inventory API
 
-**Tech Stack:** Laravel, Laravel Sanctum, MySQL, Postman, Railway
+**Stack Tecnológico:** Laravel, Laravel Sanctum, MySQL, Postman, Railway
 
-**Postman Collection:** [Open in Postman](https://www.postman.com/workspace/My-Workspace~fabd6659-33f8-4926-8597-842371a54b83/collection/41282147-a5b0c647-8827-4610-977c-2b0788cd8718?action=share&creator=41282147) ✅
+**Colección de Postman:** [Abrir en Postman](https://www.postman.com/workspace/My-Workspace~fabd6659-33f8-4926-8597-842371a54b83/collection/41282147-a5b0c647-8827-4610-977c-2b0788cd8718?action=share&creator=41282147) ✅
 
-Application created to manage a bookstore’s inventory, operated by **Sellers** and **Administrators**, who are the users with access to the platform. 📖✨
+Aplicación creada para gestionar el inventario de una librería, operada por **Vendedores** y **Administradores**, quienes son los usuarios con acceso a la plataforma. 📖✨
 
-## 🚀 Features
+## 🚀 Funcionalidades
 
--   🔑 User authentication via **Bearer Token**
--   📝 User registration
--   🔓 Login and logout
--   👥 Full CRUD of **Users** with exclusive admin permissions
--   📦 CRUD of **Products** with permissions for sellers and admins (limited for sellers)
--   🏢 CRUD of **Suppliers**, with limited permissions for sellers
--   👤 CRUD of **Clients**
--   🛒 Registration of **Purchases**
--   💰 Registration of **Sales** and retrieval of sales data
--   🔓 Permission configuration with middleware and policies
--   🔓 Data validation with FormRequest
--   📊 **Stock Reports**
--   📅 **Sales Reports** filtered by date
--   🧾 **Purchase Reports** filtered by suppliers
+-   🔑 Autenticación de usuarios mediante **Bearer Token**
+-   📝 Registro de usuarios
+-   🔓 Inicio y cierre de sesión
+-   👥 CRUD completo de **Usuarios** con permisos exclusivos de administrador
+-   📦 CRUD de **Productos** con permisos para vendedores y administradores (limitado para vendedores)
+-   🏢 CRUD de **Proveedores**, con permisos limitados para vendedores
+-   👤 CRUD de **Clientes**
+-   🛒 Registro de **Compras**
+-   💰 Registro de **Ventas** y obtención de datos de ventas
+-   🔓 Configuración de permisos con middleware y policies
+-   🔓 Validación de datos con FormRequest
+-   📊 **Reportes de Inventario**
+-   📅 **Reportes de Ventas** filtrados por fecha
+-   🧾 **Reportes de Compras** filtrados por proveedores
 
-**Application Domain:** [Timeless Pages API](https://timelesspages-product-inventory-production.up.railway.app)
-
----
-
-## 🔐 Authentication
-
-| Method | Endpoint           | Description   |
-| ------ | ------------------ | ------------- |
-| POST   | `/api/v1/login`    | Login         |
-| POST   | `/api/v1/logout`   | Logout        |
-| POST   | `/api/v1/register` | Register user |
+**Dominio de la Aplicación:** [Timeless Pages API](https://timelesspages-product-inventory-production.up.railway.app)
 
 ---
 
-## 👥 User Management
+## 🔐 Autenticación
 
-| Method | Endpoint             | Description     | Required Role |
-| ------ | -------------------- | --------------- | ------------- |
-| GET    | `/api/v1/users`      | List all users  | Admin         |
-| GET    | `/apiv1//users/{id}` | Get user by ID  | Admin         |
-| POST   | `/api/v1/users`      | Create new user | Admin         |
-| PUT    | `/api/v1/users/{id}` | Update user     | Admin         |
-| DELETE | `/api/v1/users/{id}` | Delete user     | Admin         |
+| Método | Endpoint           | Descripción       |
+| ------ | ------------------ | ----------------- |
+| POST   | `/api/v1/login`    | Iniciar sesión    |
+| POST   | `/api/v1/logout`   | Cerrar sesión     |
+| POST   | `/api/v1/register` | Registrar usuario |
 
 ---
 
-## 📦 Product Management
+## 👥 Gestión de Usuarios
 
-| Method | Endpoint                | Description        | Required Role |
-| ------ | ----------------------- | ------------------ | ------------- |
-| GET    | `/api/v1/products`      | List all products  | Admin/Seller  |
-| GET    | `/api/v1/products/{id}` | Get product by ID  | Admin/Seller  |
-| POST   | `/api/v1/products`      | Create new product | Admin         |
-| PUT    | `/api/v1/products/{id}` | Update product     | Admin         |
-| DELETE | `/api/v1/products/{id}` | Delete product     | Admin         |
-
----
-
-## 🏢 Supplier Management
-
-| Method | Endpoint                 | Description         | Required Role |
-| ------ | ------------------------ | ------------------- | ------------- |
-| GET    | `/api/v1/suppliers`      | List all suppliers  | Admin/Seller  |
-| GET    | `/api/v1/suppliers/{id}` | Get supplier by ID  | Admin/Seller  |
-| POST   | `/api/v1/suppliers`      | Create new supplier | Admin         |
-| PUT    | `/api/v1/suppliers/{id}` | Update supplier     | Admin         |
-| DELETE | `/api/v1/suppliers/{id}` | Delete supplier     | Admin         |
+| Método | Endpoint             | Descripción        | Rol Requerido |
+| ------ | -------------------- | ------------------ | ------------- |
+| GET    | `/api/v1/users`      | Listar usuarios    | Admin         |
+| GET    | `/apiv1//users/{id}` | Obtener usuario    | Admin         |
+| POST   | `/api/v1/users`      | Crear usuario      | Admin         |
+| PUT    | `/api/v1/users/{id}` | Actualizar usuario | Admin         |
+| DELETE | `/api/v1/users/{id}` | Eliminar usuario   | Admin         |
 
 ---
 
-## 👤 Client Management
+## 📦 Gestión de Productos
 
-| Method | Endpoint               | Description       | Required Role |
-| ------ | ---------------------- | ----------------- | ------------- |
-| GET    | `/api/v1/clients`      | List all clients  | Admin/Seller  |
-| GET    | `/api/v1/clients/{id}` | Get client by ID  | Admin/Seller  |
-| POST   | `/api/v1/clients`      | Create new client | Admin/Seller  |
-| PUT    | `/api/v1/clients/{id}` | Update client     | Admin         |
-| DELETE | `/api/v1/clients/{id}` | Delete client     | Admin         |
-
----
-
-## 🛒 Purchase Management
-
-| Method | Endpoint            | Description           | Required Role |
-| ------ | ------------------- | --------------------- | ------------- |
-| POST   | `/api/v1/purchases` | Register new purchase | Admin         |
+| Método | Endpoint                | Descripción         | Rol Requerido  |
+| ------ | ----------------------- | ------------------- | -------------- |
+| GET    | `/api/v1/products`      | Listar productos    | Admin/Vendedor |
+| GET    | `/api/v1/products/{id}` | Obtener producto    | Admin/Vendedor |
+| POST   | `/api/v1/products`      | Crear producto      | Admin          |
+| PUT    | `/api/v1/products/{id}` | Actualizar producto | Admin          |
+| DELETE | `/api/v1/products/{id}` | Eliminar producto   | Admin          |
 
 ---
 
-## 💰 Sales Management
+## 🏢 Gestión de Proveedores
 
-| Method | Endpoint        | Description       | Required Role |
-| ------ | --------------- | ----------------- | ------------- |
-| GET    | `/api/v1/sales` | List all sales    | Admin/Seller  |
-| POST   | `/api/v1/sales` | Register new sale | Admin/Seller  |
+| Método | Endpoint                 | Descripción          | Rol Requerido  |
+| ------ | ------------------------ | -------------------- | -------------- |
+| GET    | `/api/v1/suppliers`      | Listar proveedores   | Admin/Vendedor |
+| GET    | `/api/v1/suppliers/{id}` | Obtener proveedor    | Admin/Vendedor |
+| POST   | `/api/v1/suppliers`      | Crear proveedor      | Admin          |
+| PUT    | `/api/v1/suppliers/{id}` | Actualizar proveedor | Admin          |
+| DELETE | `/api/v1/suppliers/{id}` | Eliminar proveedor   | Admin          |
 
 ---
 
-## 📊 Reports
+## 👤 Gestión de Clientes
 
-| Method | Endpoint                    | Description                           | Required Role |
+| Método | Endpoint               | Descripción        | Rol Requerido  |
+| ------ | ---------------------- | ------------------ | -------------- |
+| GET    | `/api/v1/clients`      | Listar clientes    | Admin/Vendedor |
+| GET    | `/api/v1/clients/{id}` | Obtener cliente    | Admin/Vendedor |
+| POST   | `/api/v1/clients`      | Crear cliente      | Admin/Vendedor |
+| PUT    | `/api/v1/clients/{id}` | Actualizar cliente | Admin          |
+| DELETE | `/api/v1/clients/{id}` | Eliminar cliente   | Admin          |
+
+---
+
+## 🛒 Gestión de Compras
+
+| Método | Endpoint            | Descripción      | Rol Requerido |
+| ------ | ------------------- | ---------------- | ------------- |
+| POST   | `/api/v1/purchases` | Registrar compra | Admin         |
+
+---
+
+## 💰 Gestión de Ventas
+
+| Método | Endpoint        | Descripción     | Rol Requerido  |
+| ------ | --------------- | --------------- | -------------- |
+| GET    | `/api/v1/sales` | Listar ventas   | Admin/Vendedor |
+| POST   | `/api/v1/sales` | Registrar venta | Admin/Vendedor |
+
+---
+
+## 📊 Reportes
+
+| Método | Endpoint                    | Descripción                           | Rol Requerido |
 | ------ | --------------------------- | ------------------------------------- | ------------- |
-| GET    | `/api/v1/reports/stock`     | Current stock report                  | Admin         |
-| POST   | `/api/v1/reports/sales`     | Sales report filtered by dates        | Admin         |
-| POST   | `/api/v1/reports/purchases` | Purchase report filtered by suppliers | Admin         |
+| GET    | `/api/v1/reports/stock`     | Reporte de inventario actual          | Admin         |
+| POST   | `/api/v1/reports/sales`     | Reporte de ventas filtrado por fechas | Admin         |
+| POST   | `/api/v1/reports/purchases` | Reporte de compras por proveedores    | Admin         |
 
 ---
 
-## 🛠️ Requirements to Test the Application
+## 🛠️ Requisitos para Probar la Aplicación
 
-The application is currently online and fully usable. Here are test accounts you can use:
+La aplicación está actualmente en línea y completamente funcional. Aquí hay cuentas de prueba que puedes usar:
 
 ```json
 {
@@ -138,11 +138,11 @@ The application is currently online and fully usable. Here are test accounts you
   "password": "123456"
 }
 
-Use credentials without quotation marks
+Usa las credenciales sin comillas
 
 ```
 
-If you want to run it locally, make sure your computer has the following requirements:
+Si deseas ejecutarla de forma local, asegúrate de que tu computadora tenga los siguientes requisitos:
 
 -   PHP 8.x
 -   Composer
@@ -151,11 +151,11 @@ If you want to run it locally, make sure your computer has the following require
 
 ---
 
-⚙️ Environment Setup
+⚙️ Configuración del Entorno
 
-To connect the API to your own database, simply fill out the .env file with your local database credentials. Without this step, the API cannot connect to the database.
+Para conectar la API a tu propia base de datos, simplemente llena el archivo .env con tus credenciales locales. Sin este paso, la API no podrá conectarse a la base de datos.
 
-Example configuration:
+Ejemplo de configuración:
 DB_CONNECTION=mysql  
 DB_HOST=127.0.0.1  
 DB_PORT=3306  
@@ -165,16 +165,17 @@ DB_PASSWORD=your_database_password
 
 ---
 
-🚀 Local Installation
-⚠️ Make sure MySQL is running locally (e.g., with XAMPP) before starting.
+🚀 Instalación Local
+⚠️ Asegúrate de que MySQL esté corriendo localmente (por ejemplo, con XAMPP) antes de iniciar.
 
-Clone the repository
-Open your terminal at the project root
+Clona el repositorio
+Abre tu terminal en la raíz del proyecto
 
-Run the following commands:
+Ejecuta los siguientes comandos:
 
 ```bash
-composer install      # ⚙️  Install PHP dependencies
-cp .env.example .env  # 📝 Create your .env configuration file
-php artisan serve      # 🚀 Start the local server
+composer install      # ⚙️  Instalar dependencias de PHP
+cp .env.example .env  # 📝 Crear el archivo de configuración .env
+php artisan serve     # 🚀 Iniciar el servidor local
+
 ```

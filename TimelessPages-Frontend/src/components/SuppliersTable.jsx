@@ -48,9 +48,9 @@ const SuppliersTable = () => {
             {suppliers.length > 0 ? (
               suppliers.map((suppliers) => (
                 <tr key={suppliers.id}>
-                  <td>{suppliers.name}</td>
-                  <td>{suppliers.email}</td>
-                  <td>{suppliers.phone}</td>
+                  <td data-label="Supplier">{suppliers.name}</td>
+                  <td data-label="Email">{suppliers.email}</td>
+                  <td data-label="Phone">{suppliers.phone}</td>
                 </tr>
               ))
             ) : (
